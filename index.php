@@ -394,11 +394,12 @@
                 <div class="result">
 
                     <p>
-                        <? $i = 1;
-                    echo $i;
-                    $i++;
-                        for ($i=2; $i<10; $i++){
-                            echo '<br>' . $i;
+                        <?
+                        $i = 1;
+                        echo $i;
+                        $i++;
+                        for ($i = 2; $i < 10; $i++) {
+                            echo "<br>{$i}";
                         }
                         ?>
                     </p>
@@ -456,12 +457,12 @@
                 <h3>Логические значения в PHP</h3>
                 <div class="hint">
                     <?php
-                    $code = <<<'PHP'
+                    $code = <<< a123
                     <?php
                     echo true;  // выведет 1
                     echo false; // выведет пустоту
                     ?>
-                    PHP;
+                    a123;
                     highlight_string($code);
                     ?>
                 </div>
