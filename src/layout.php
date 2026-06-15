@@ -4,13 +4,6 @@ function normalizeString(string $value): string
     return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
-function normalizeHtml(string $html): string
-{
-    $html = trim($html);
-
-    return preg_replace('/<\/p>\s*<p>/', "</p>\n            <p>", $html);
-}
-
 function startPage(string $name): void
 {
 ?>
@@ -56,7 +49,7 @@ function hint(string $hint): void
 {
 ?>
         <div class="hint">
-            <?= normalizeHtml($hint) . "\n" ?>
+            <?= $hint . "\n" ?>
         </div>
 <?
 }
