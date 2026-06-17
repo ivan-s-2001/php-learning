@@ -7,34 +7,24 @@ function normalizeString(string $value): string
 function startPage(string $name): void
 {
 ?>
-<!doctype html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= normalizeString($name) ?></title>
-    <link rel="stylesheet" href="./resources/css/app.css">
-</head>
-<body>
-<div class="page">
-    <h1><?= normalizeString($name) ?></h1>
+
 <?
 }
 
 function endPage(): void
 {
 ?>
-</div>
-</body>
-</html>
+            </div>
+        </body>
+    </html>
 <?
 }
 
 function startLesson(string $name): void
 {
 ?>
-    <div class="lesson">
-        <h2><?= normalizeString($name) ?></h2>
+                <div class="lesson">
+                    <h3><?= normalizeString($name) ?></h3>
 <?
 }
 
@@ -45,46 +35,37 @@ function endLesson(): void
 <?
 }
 
-function hint(string $hint): void
-{
-?>
-        <div class="hint">
-            <?= $hint . "\n" ?>
-        </div>
-<?
-}
-
 function codeBlock(string $code): void
 {
 ?>
-        <pre><code><?= normalizeString($code) ?></code>
-        </pre>
+                    <pre class="codePreview"><?= highlight_string($code, true) ?></pre>
 <?
 }
 
-function task(int $num, string $task): void
+function task(int $num, string $text, string $code = ''): void
 {
 ?>
-        <div class="task">
-            <h3>Задача <?= $num ?></h3>
-            <p><?= $task ?></p>
-        </div>
+                    <div class="task">
+                        <h4>Задача <?= $num ?></h4>
+                        <p><?= $text ?></p>
+                        <? if ($code !== ''): ?>
+                            <? codeBlock($code); ?>
+                        <? endif; ?>
+                    </div>
 <?
 }
 
-function startResult(): void
+function result(string $code): void
 {
 ?>
-        <div class="result">
-            <h3>Решение</h3>
-<?
-}
-
-function endResult(): void
-{
-?>
-
-        </div>
+                    <div class="result">
+                        <div class="resultTitle">Код решения:</div>
+                        <? codeBlock($code); ?>
+                        <div class="resultTitle">Результат выполнения кода:</div>
+                        <div class="resultOutput">
+                            <? eval('?>' . $code) . PHP_EOL ?>
+                        </div>
+                    </div>
 <?
 }
 ?>
