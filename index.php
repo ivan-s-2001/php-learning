@@ -9,28 +9,26 @@ if (!isset($blocks[$block])) {
 }
 ?>
 <!doctype html>
-    <html lang="ru">
+<html lang="ru">
     <head>
         <meta charset="UTF-8">
-        <title><?= normalizeString($name) ?></title>
+        <title>Основной учебник PHP8+</title>
         <link rel="stylesheet" href="./resources/css/app.css">
     </head>
     <body>
         <div class="page">
-            <h1><?= normalizeString($name) ?></h1>
+            <h1>Основной учебник PHP8+</h1>
             <h2><?= normalizeString($blocks[$block]['title']); ?></h2>
             <nav>
                 <?
                 foreach ($blocks as $key => $content) {
                     if ($key !== $block) {
-                        echo '<a href="?block=' . $key . '">' . normalizeString($content['title']) . '</a>';
+                        echo '<a href="?block=' . $key . '">' . normalizeString($content['title']) . '</a>' . "\n";
                     }
                 }
                 ?>
             </nav>
-
-<?
-include $blocks[$block]['file'];
-
-endPage();
-?>
+            <? include $blocks[$block]['file']; ?>
+        </div>
+    </body>
+</html>
