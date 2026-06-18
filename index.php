@@ -12,12 +12,12 @@ if (!isset($blocks[$block])) {
 <html lang="ru">
     <head>
         <meta charset="UTF-8">
-        <title>Основной учебник PHP8+</title>
+        <title><?= $pageTitle ?></title>
         <link rel="stylesheet" href="./resources/css/app.css">
     </head>
     <body>
         <div class="page">
-            <h1>Основной учебник PHP8+</h1>
+            <h1><?= $pageTitle ?></h1>
             <h2><?= normalizeString($blocks[$block]['title']); ?></h2>
             <nav>
                 <?
