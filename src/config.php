@@ -1,4 +1,4 @@
-<?
+<?php
 $pageTitle = 'Основной учебник PHP8+';
 
 $blocks = [
@@ -45,9 +45,21 @@ $blocks = [
     'functions' => [
         'title' => 'Пользовательские функции',
         'file' => __DIR__ . '/blocks/011functions.php',
-    ]
+    ],
+    'scope' => [
+        'title' => 'Область видимости',
+        'file' => __DIR__ . '/blocks/012scope.php',
+    ],
+    'forming' => [
+        'title' => 'Формирование строк',
+        'file' => __DIR__ . '/blocks/013forming.php',
+    ],
+    'forms' => [
+        'title' => 'Формы',
+        'file' => __DIR__ . '/blocks/014forms.php',
+    ],
 ];
 
-$defaultBlock = array_key_first($blocks);
 
+$defaultBlock = array_key_first($blocks);
 ?>

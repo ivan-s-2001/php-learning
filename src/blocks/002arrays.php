@@ -1,404 +1,582 @@
 <?
 
-startLesson('Массивы');
+startLesson('Массивы в PHP');
+// https://code.mu/ru/php/book/prime/arrays/intro/
+// ⊗ppPmArInr
 
-task(
-    1,
-    'Посмотрите содержимое массива с помощью echo и var_dump.'
-);
-
-result(<<<'PHP'
+codeBlock(<<< 'PHP'
 <?
-$a = ['a', 'b', 'c'];
-
-var_dump($a);
+	$arr = []; // создаем массив $arr
 ?>
 PHP);
 
-task(
-    2,
-    'Выведите на экран каждый элемент массива.'
-);
-
-result(<<<'PHP'
+codeBlock(<<< 'PHP'
 <?
-$arr = ['a', 'b', 'c'];
-
-echo '<p>$arr[0] = ' . $arr[0] . '</p>';
-echo '<p>$arr[1] = ' . $arr[1] . '</p>';
-echo '<p>$arr[2] = ' . $arr[2] . '</p>';
+	$arr = ['a', 'b', 'c'];
 ?>
 PHP);
 
-task(
-    3,
-    'Соберите строку из элементов массива.'
-);
-
-result(<<<'PHP'
+codeBlock(<<< 'PHP'
 <?
-$arr = ['a', 'b', 'c', 'd', 'e'];
-
-echo '<p>' . $arr[0] . $arr[1] . $arr[2] . $arr[3] . '</p>';
+	$arr = [1, 2, 3];
 ?>
 PHP);
 
-task(
-    4,
-    'Найдите сумму элементов массива.'
-);
-
-result(<<<'PHP'
+codeBlock(<<< 'PHP'
 <?
-$arr = [1, 2, 3, 4, 5];
-
-echo '<p>$arr[0] + $arr[1] + $arr[2] + $arr[3] + $arr[4] = ' . ($arr[0] + $arr[1] + $arr[2] + $arr[3] + $arr[4]) . '</p>';
+	$arr = [1, 2, 'a', 'b', null, true, false];
 ?>
 PHP);
 
-task(
-    5,
-    'Умножьте элементы массива и сложите результаты.'
-);
+startLesson('Как посмотреть содержимое массива в PHP');
+// https://code.mu/ru/php/book/prime/arrays/dumping/
+// ⊗ppPmArDm
 
-result(<<<'PHP'
+codeBlock(<<< 'PHP'
 <?
-$arr = [2, 5, 3, 9];
-$res = 0;
-foreach ($arr as $value) {
-    $value *= 2;
-    $res += $value;
-}
-echo '<p>$res = ' . $res . '</p>';
+	$a = [1, 2, 3];
+	echo $a; // выведет 'Array'
 ?>
 PHP);
 
-task(
-    6,
-    'Создайте ассоциативный массив с данными пользователя и выведите ФИО.'
-);
-
-result(<<<'PHP'
+codeBlock(<<< 'PHP'
 <?
-$user = [
-    'surname' => 'Иванов',
-    'name' => 'Иван',
-    'patronymic' => 'Иванович',
-];
-
-echo '<p>' . $user['surname'] . ' ' . $user['name'] . ' ' . $user['patronymic'] . '</p>';
+	$a = [1, 2, 3];
+	var_dump($a);
 ?>
 PHP);
 
-task(
-    7,
-    'Создайте массив дней недели с ключами от 1 до 7 и выведите все элементы.'
-);
-
-result(<<<'PHP'
+task([
+    'num' => 1,
+    'text' => 'Дан массив: Выведите этот массив на экран с помощью команды <code>echo</code> и с помощью функции <code>var_dump</code>.',
+    'code' => <<< 'PHP'
 <?
-$week = [1 => 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье',];
+	$a = ['a', 'b', 'c'];
+?>
+PHP,
+]);
 
-for ($i = 1; $i <= 7; $i++)
-{
-    echo '<p>' . $week[$i] . '</p>';
-}
+startLesson('Отдельный элемент массива в PHP');
+// https://code.mu/ru/php/book/prime/arrays/element/
+// ⊗ppPmArEl
+
+codeBlock(<<< 'PHP'
+<?
+	$arr = ['a', 'b', 'c', 'd', 'e'];
+	
+	echo $arr[0]; // выведет 'a'
+	echo $arr[1]; // выведет 'b'
+	echo $arr[2]; // выведет 'c'
 ?>
 PHP);
 
-task(
-    8,
-    'Создайте массив месяцев так, чтобы январь имел ключ 1.'
-);
-
-result(<<<'PHP'
+task([
+    'num' => 1,
+    'text' => 'Дан массив: Выведите на экран каждый элемент этого массива.',
+    'code' => <<< 'PHP'
 <?
-$months = [ 1 => 'январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь', ];
+	$arr = ['a', 'b', 'c'];
+?>
+PHP,
+]);
 
-var_dump($months);
+task([
+    'num' => 2,
+    'text' => 'Дан массив: Выведите с помощью этого массива следующую строку:',
+    'code' => <<< 'PHP'
+<?
+	$arr = ['a', 'b', 'c', 'd', 'e'];
+?>
+
+'a+b+c+d'
+PHP,
+]);
+
+task([
+    'num' => 3,
+    'text' => 'Дан массив: Выведите на экран сумму элементов массива.',
+    'code' => <<< 'PHP'
+<?
+	$arr = [1, 2, 3, 4, 5];
+?>
+PHP,
+]);
+
+task([
+    'num' => 4,
+    'text' => 'Дан массив: Умножьте первый элемент массива на второй, а третий элемент на четвертый. Результаты сложите, присвойте переменной <code>$res</code>. Выведите на экран значение этой переменной.',
+    'code' => <<< 'PHP'
+<?
+	$arr = [2, 5, 3, 9];
+?>
+PHP,
+]);
+
+startLesson('Ассоциативные массивы в PHP');
+// https://code.mu/ru/php/book/prime/arrays/associative/
+// ⊗ppPmArAs
+
+codeBlock(<<< 'PHP'
+<?
+	$arr = [2025, 12, 31];
 ?>
 PHP);
 
-task(
-    9,
-    'Проверьте порядок элементов в ассоциативном массиве.'
-);
-
-result(<<<'PHP'
+codeBlock(<<< 'PHP'
 <?
-$arr = [
-    'first' => 1,
-    'second' => 2,
-    'third' => 3,
-];
-
-var_dump($arr);
+	$arr = [
+		'year' => 2025,
+		'month' => 12, 
+		'day' => 31
+	];
 ?>
 PHP);
 
-task(
-    10,
-    'Выведите количество элементов в обычном и ассоциативном массиве.'
-);
-
-result(<<<'PHP'
+codeBlock(<<< 'PHP'
 <?
-$arr = ['a', 'b', 'c', 'd', 'e'];
-$data = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
-
-echo '<p>count($arr) = ' . count($arr) . '</p>';
-echo '<p>count($data) = ' . count($data) . '</p>';
+	echo $arr['year'];  // выведет 2025
+	echo $arr['month']; // выведет 12
+	echo $arr['day'];   // выведет 31
 ?>
 PHP);
 
-task(
-    11,
-    'Измените значения элементов ассоциативного массива.'
-);
+task([
+    'num' => 1,
+    'text' => 'Создайте массив <code>$user</code> с ключами <code>\'name\'</code>, <code>\'surname\'</code>, <code>\'patronymic\'</code> и какими-то произвольными значениями. Выведите на экран фамилию, имя и отчество через пробел.',
+]);
 
-result(<<<'PHP'
+task([
+    'num' => 2,
+    'text' => 'Создайте массив с ключами от <code>1</code> до <code>7</code>, в качестве значений содержащий имена дней недели. Выведите на экран все его элементы.',
+]);
+
+startLesson('Хитрость с ключами в PHP');
+// https://code.mu/ru/php/book/prime/arrays/keys-trick/
+// ⊗ppPmArKT
+
+codeBlock(<<< 'PHP'
 <?
-$arr = ['a' => 1, 'b' => 2, 'c' => 3];
-
-$arr['a'] = 10;
-$arr['b'] = 20;
-$arr['c'] = 30;
-
-var_dump($arr);
+	$arr = [1 => 'a', 'b', 'c', 'd'];
+	
+	echo $arr[1]; // выведет 'a'
+	echo $arr[2]; // выведет 'b'
+	echo $arr[3]; // выведет 'c'
 ?>
 PHP);
 
-task(
-    12,
-    'Прибавьте к каждому элементу массива число 3.'
-);
+task([
+    'num' => 1,
+    'text' => 'Составьте массив с названиями месяцев. Пусть в нем январь имеет ключ <code>1</code>.',
+]);
 
-result(<<<'PHP'
+startLesson('Порядок элементов в массивах в PHP');
+// https://code.mu/ru/php/book/prime/arrays/elements-order/
+// ⊗ppPmArEO
+
+codeBlock(<<< 'PHP'
 <?
-$arr = ['a' => 1, 'b' => 2, 'c' => 3];
-
-$arr['a'] += 3;
-$arr['b'] += 3;
-$arr['c'] += 3;
-
-var_dump($arr);
+	$arr = [1 => 'value1', 2 => 'value2', 3 => 'value3'];
+	
+	echo $arr[1]; // выведет 'value1'
+	echo $arr[2]; // выведет 'value2'
+	echo $arr[3]; // выведет 'value3'
 ?>
 PHP);
 
-task(
-    13,
-    'Определите результат после инкремента и декремента элементов массива.'
-);
-
-result(<<<'PHP'
+codeBlock(<<< 'PHP'
 <?
-$arr = ['a' => 1, 'b' => 2, 'c' => 3];
-
-$arr['a']++;
-$arr['a']++;
-$arr['b']--;
-$arr['c']--;
-$arr['c']--;
-
-var_dump($arr);
+	$arr = [3 => 'value3', 1 => 'value1', 2 => 'value2'];
+	
+	echo $arr[1]; // выведет 'value1'
+	echo $arr[2]; // выведет 'value2'
+	echo $arr[3]; // выведет 'value3'
 ?>
 PHP);
 
-task(
-    14,
-    'Заполните пустой массив элементами 1, 2, 3, 4 и 5.'
-);
-
-result(<<<'PHP'
+codeBlock(<<< 'PHP'
 <?
-$arr = [];
-
-$arr[] = 1;
-$arr[] = 2;
-$arr[] = 3;
-$arr[] = 4;
-$arr[] = 5;
-
-var_dump($arr);
+	$arr = [7 => 'value1', 50 => 'value2', 23 => 'value3'];
 ?>
 PHP);
 
-task(
-    15,
-    'Добавьте в конец массива элементы 4 и 5.'
-);
+task([
+    'num' => 1,
+    'text' => 'Проверьте описанное на каком-нибудь из ваших ассоциативных массивов.',
+]);
 
-result(<<<'PHP'
+startLesson('Длина массива в PHP');
+// https://code.mu/ru/php/book/prime/arrays/length/
+// ⊗ppPmArLn
+
+codeBlock(<<< 'PHP'
 <?
-$arr = [1, 2, 3];
-
-$arr[] = 4;
-$arr[] = 5;
-
-var_dump($arr);
+	$arr = [1, 2, 3];
+	echo count($arr); // выведет 3
 ?>
 PHP);
 
-task(
-    16,
-    'Запишите текущую дату в массив по явным ключам.'
-);
-
-result(<<<'PHP'
+task([
+    'num' => 1,
+    'text' => 'Пусть дан такой массив: Выведите на экран количество элементов в этом массиве.',
+    'code' => <<< 'PHP'
 <?
-$arr = [];
+	$arr = ['a', 'b', 'c', 'd', 'e'];
+?>
+PHP,
+]);
 
-$arr['day'] = 18;
-$arr['month'] = 6;
-$arr['year'] = 2026;
+task([
+    'num' => 2,
+    'text' => 'Пусть дан такой массив: Выведите на экран количество элементов в этом массиве.',
+    'code' => <<< 'PHP'
+<?
+	$arr = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
+?>
+PHP,
+]);
 
-foreach ($arr as $key => $value) {
-    echo $key . ' => ' . $value . '<br>';
-}
+startLesson('Изменение элементов массива в PHP');
+// https://code.mu/ru/php/book/prime/arrays/elements-changing/
+// ⊗ppPmArECh
+
+codeBlock(<<< 'PHP'
+<?
+	$arr = ['a', 'b', 'c'];
+	
+	$arr[0] = '!';
+	var_dump($arr); // выведет ['!', 'b', 'c']
 ?>
 PHP);
 
-task(
-    17,
-    'Найдите сумму элементов, ключи которых хранятся в переменных.'
-);
-
-result(<<<'PHP'
+task([
+    'num' => 1,
+    'text' => 'Дан следующий массив: Измените значение каждого из элементов этого массива.',
+    'code' => <<< 'PHP'
 <?
-$arr = [1, 2, 3, 4, 5];
-$key1 = 1;
-$key2 = 2;
+	$arr = ['a' => 1, 'b' => 2, 'c' => 3];
+?>
+PHP,
+]);
 
-echo '<p>$arr[$key1] + $arr[$key2] = ' . ($arr[$key1] + $arr[$key2]) . '</p>';
+startLesson('Перезапись элементов массива в PHP');
+// https://code.mu/ru/php/book/prime/arrays/elements-rewriting/
+// ⊗ppPmArERe
+
+codeBlock(<<< 'PHP'
+<?
+	$arr = ['a', 'b', 'c'];
+	
+	$arr[0] = $arr[0] . '!';
+	$arr[1] = $arr[1] . '!';
+	$arr[2] = $arr[2] . '!';
+	
+	var_dump($arr); // выведет ['a!', 'b!', 'c!']
 ?>
 PHP);
 
-task(
-    18,
-    'Выведите элемент массива, ключ которого хранится в переменной.'
-);
-
-result(<<<'PHP'
+codeBlock(<<< 'PHP'
 <?
-$arr = ['a' => 1, 'b' => 2, 'c' => 3];
-$key = 'b';
-
-echo '<p>$arr[$key] = ' . $arr[$key] . '</p>';
+	$arr = ['a', 'b', 'c'];
+	
+	$arr[0] .= '!';
+	$arr[1] .= '!';
+	$arr[2] .= '!';
+	
+	var_dump($arr); // выведет ['a!', 'b!', 'c!']
 ?>
 PHP);
 
-task(
-    19,
-    'Выведите последний элемент массива через count($arr) - 1.'
-);
-
-result(<<<'PHP'
+task([
+    'num' => 1,
+    'text' => 'Дан следующий массив: Прибавьте к каждому элементу массива число <code>3</code>. Выведите на экран измененный массив.',
+    'code' => <<< 'PHP'
 <?
-$arr = [1, 2, 3, 4, 5];
+	$arr = ['a' => 1, 'b' => 2, 'c' => 3];
+?>
+PHP,
+]);
 
-echo '<p>$arr[count($arr) - 1] = ' . $arr[count($arr) - 1] . '</p>';
+startLesson('Инкрементация элементов массива в PHP');
+// https://code.mu/ru/php/book/prime/arrays/elements-incrementation/
+// ⊗ppPmArEI
+
+codeBlock(<<< 'PHP'
+<?
+	$arr = [1, 2, 3, 4];
+	
+	$arr[0]++;
+	++$arr[1];
+	$arr[2]--;
+	--$arr[3];
+	
+	var_dump($arr); // выведет [2, 3, 2, 3]
 ?>
 PHP);
 
-endLesson();
-
-startLesson('Практика на поиск ошибок в массивах');
-
-task(
-    1,
-    'Исправьте ошибки с длиной массива и последним элементом.'
-);
-
-result(<<<'PHP'
+task([
+    'num' => 1,
+    'text' => 'Дан следующий код: Не запуская код, расскажите, каким будет результат функции <code>var_dump</code>.',
+    'code' => <<< 'PHP'
 <?
-$arr = [1, 2, 3, 4, 5];
+	$arr = ['a' => 1, 'b' => 2, 'c' => 3];
+	
+	$arr['a']++;
+	$arr['a']++;
+	$arr['b']--;
+	$arr['c']--;
+	$arr['c']--;
+	
+	var_dump($arr);
+?>
+PHP,
+]);
 
-echo '<p>count($arr) = ' . count($arr) . '</p>';
-echo '<p>$arr[count($arr) - 1] = ' . $arr[count($arr) - 1] . '</p>';
+startLesson('Заполнение массивов в PHP');
+// https://code.mu/ru/php/book/prime/arrays/filling/
+// ⊗ppPmArFl
+
+codeBlock(<<< 'PHP'
+<?
+	$arr = [];     // создаем пустой массив
+	
+	$arr[] = 'a';  // элемент добавится в ключ 0
+	$arr[] = 'b';  // элемент добавится в ключ 1
+	$arr[] = 'c';  // элемент добавится в ключ 2
+	
+	var_dump($arr); // выведет ['a', 'b', 'c']
 ?>
 PHP);
 
-task(
-    2,
-    'Исправьте ошибки с суммой элементов обычного массива.'
-);
-
-result(<<<'PHP'
+codeBlock(<<< 'PHP'
 <?
-$arr = [1, 2, 3, 4, 5];
-
-echo '<p>$arr[0] + $arr[1] + $arr[2] + $arr[3] + $arr[4] = ' . ($arr[0] + $arr[1] + $arr[2] + $arr[3] + $arr[4]) . '</p>';
+	$arr = ['a', 'b', 'c']; // объявляем массив с элементами
+	
+	$arr[] = 'd'; // элемент добавится в ключ 3
+	$arr[] = 'e'; // элемент добавится в ключ 4
+	
+	var_dump($arr); // выведет ['a', 'b', 'c', 'd', 'e']
 ?>
 PHP);
 
-task(
-    3,
-    'Исправьте ошибки с ключами ассоциативного массива.'
-);
-
-result(<<<'PHP'
+task([
+    'num' => 1,
+    'text' => 'Пусть дан пустой массив: Описанным способом заполните этот массив элементами со значениями <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code> и <code>5</code>.',
+    'code' => <<< 'PHP'
 <?
-$arr = [
-    'a' => 1,
-    'b' => 2,
-    'c' => 3,
-];
+	$arr = [];
+?>
+PHP,
+]);
 
-echo '<p>$arr[\'a\'] + $arr[\'b\'] + $arr[\'c\'] = ' . ($arr['a'] + $arr['b'] + $arr['c']) . '</p>';
+task([
+    'num' => 2,
+    'text' => 'Пусть дан такой массив: Добавьте ему в конец элементы <code>4</code> и <code>5</code>.',
+    'code' => <<< 'PHP'
+<?
+	$arr = [1, 2, 3];
+?>
+PHP,
+]);
+
+startLesson('Явное указание ключей в PHP');
+// https://code.mu/ru/php/book/prime/arrays/explicit-assign-keys/
+// ⊗ppPmArEAK
+
+codeBlock(<<< 'PHP'
+<?
+	$arr = []; // создаем пустой массив
+	
+	$arr[0] = 'a'; // в ключ 0 добавим элемент 'a'
+	$arr[1] = 'b'; // в ключ 1 добавим элемент 'b'
+	$arr[2] = 'c'; // в ключ 2 добавим элемент 'c'
+	
+	var_dump($arr); // выведет ['a', 'b', 'c']
 ?>
 PHP);
 
-task(
-    4,
-    'Исправьте ошибку с ключом, заданным в переменной.'
-);
-
-result(<<<'PHP'
+codeBlock(<<< 'PHP'
 <?
-$arr = [
-    'a' => 1,
-    'b' => 2,
-    'c' => 3,
-];
-
-$key = 'a';
-
-echo '<p>$arr[$key] = ' . $arr[$key] . '</p>';
+	$arr = [];
+	
+	$arr['a'] = 1;
+	$arr['b'] = 2;
+	$arr['c'] = 3;
+	
+	var_dump($arr); // выведет ['a' => 1, 'b' => 2, 'c' => 3]
 ?>
 PHP);
 
-task(
-    5,
-    'Разберите код, который уже правильно выводит длину массива.'
-);
-
-result(<<<'PHP'
+task([
+    'num' => 1,
+    'text' => 'Пусть дан пустой массив: Описанным способом в ключ <code>\'year\'</code> запишите текущий год, в ключ <code>\'month\'</code> - текущий месяц, а в ключ <code>\'day\'</code> - текущий день.',
+    'code' => <<< 'PHP'
 <?
-$arr = [1, 2, 3, 4, 5];
+	$arr = [];
+?>
+PHP,
+]);
 
-echo '<p>count($arr) = ' . count($arr) . '</p>';
+startLesson('Ключи из переменных в PHP');
+// https://code.mu/ru/php/book/prime/arrays/vars-keys/
+// ⊗ppPmArVK
+
+codeBlock(<<< 'PHP'
+<?
+	$arr = ['a', 'b', 'c'];
 ?>
 PHP);
 
-task(
-    6,
-    'Исправьте вывод элемента массива по числовому ключу.'
-);
-
-result(<<<'PHP'
+codeBlock(<<< 'PHP'
 <?
-$arr = [
-    'a' => 1,
-    'b' => 2,
-    'c' => 3,
-];
-
-$key = 'a';
-
-echo '<p>$arr[$key] = ' . $arr[$key] . '</p>';
+	$arr = ['a', 'b', 'c'];
+	echo $arr[0]; // выведет 'a'
 ?>
 PHP);
 
-endLesson();
-
+codeBlock(<<< 'PHP'
+<?
+	$arr = ['a', 'b', 'c'];
+	$key = 0; // запишем ключ в переменную
 ?>
+PHP);
+
+codeBlock(<<< 'PHP'
+<?
+	$arr = ['a', 'b', 'c'];
+	$key = 0; // запишем ключ в переменную
+	
+	echo $arr[$key]; // выведет 'a'
+?>
+PHP);
+
+task([
+    'num' => 1,
+    'text' => 'Даны следующий переменные: Найдите сумму элементов, ключи которых хранятся в переменных.',
+    'code' => <<< 'PHP'
+<?
+	$arr = [1, 2, 3, 4, 5];
+	$key1 = 1;
+	$key2 = 2;
+?>
+PHP,
+]);
+
+task([
+    'num' => 2,
+    'text' => 'Даны следующий переменные: Выведите на экран элемент массива, ключ которого хранится в переменной <code>$key</code>.',
+    'code' => <<< 'PHP'
+<?
+	$arr = ['a' => 1, 'b' => 2, 'c' => 3];
+	$key = 'b';
+?>
+PHP,
+]);
+
+startLesson('Поиск ошибок в коде с массивами PHP');
+// https://code.mu/ru/php/book/prime/arrays/mistakes/
+// ⊗ppPmArMst
+
+task([
+    'num' => 1,
+    'text' => 'Код должен вывести длину массива:',
+    'code' => <<< 'PHP'
+<?
+	$arr = [1, 2, 3, 4, 5];
+	echo strlen($arr);
+?>
+PHP,
+]);
+
+task([
+    'num' => 2,
+    'text' => 'Код должен вывести последний элемент массива:',
+    'code' => <<< 'PHP'
+<?
+	$arr = [1, 2, 3, 4, 5];
+	echo $arr[count($arr)];
+?>
+PHP,
+]);
+
+task([
+    'num' => 3,
+    'text' => 'Код должен найти сумму элементов массива:',
+    'code' => <<< 'PHP'
+<?
+	$arr = [1, 2, 3, 4, 5];
+	echo $arr[1] + $arr[2] + $arr[3] + $arr[4] + $arr[5];
+?>
+PHP,
+]);
+
+task([
+    'num' => 4,
+    'text' => 'Код должен вывести длину массива:',
+    'code' => <<< 'PHP'
+<?
+	$arr = [1, 2, 3, 4, 5];
+	echo count([$arr]);
+?>
+PHP,
+]);
+
+task([
+    'num' => 5,
+    'text' => 'Код должен найти сумму элементов массива:',
+    'code' => <<< 'PHP'
+<?
+	$arr = [
+		'a' => 1,
+		'b' => 2,
+		'c' => 3,
+	];
+	
+	echo $arr[a] + $arr[b] + $arr[c];
+?>
+PHP,
+]);
+
+task([
+    'num' => 6,
+    'text' => 'Код должен вывести элемент массива по ключу, заданному в переменной:',
+    'code' => <<< 'PHP'
+<?
+	$arr = [
+		'a' => 1,
+		'b' => 2,
+		'c' => 3,
+	];
+	
+	$k = 'a';
+	echo $arr['$k'];
+?>
+PHP,
+]);
+
+task([
+    'num' => 7,
+    'text' => 'Код должен вывести длину массива:',
+    'code' => <<< 'PHP'
+<?
+	$arr = [1, 2, 3, 4, 5];
+	echo count($arr);
+?>
+PHP,
+]);
+
+task([
+    'num' => 8,
+    'text' => 'Код должен вывести элемент массива по ключу, заданному в переменной:',
+    'code' => <<< 'PHP'
+<?
+	$arr = [
+		'a' => 1,
+		'b' => 2,
+		'c' => 3,
+	];
+	
+	$a = 1;
+	echo $arr[$a];
+?>
+PHP,
+]);

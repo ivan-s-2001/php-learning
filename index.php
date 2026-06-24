@@ -10,25 +10,28 @@ if (!isset($blocks[$block])) {
 ?>
 <!doctype html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <title><?= $pageTitle ?></title>
-        <link rel="stylesheet" href="./resources/css/app.css">
-    </head>
-    <body>
-        <div class="page">
+	<head>
+		<meta charset="UTF-8">
+		<title><?= $pageTitle ?></title>
+		<link rel="stylesheet" href="./resources/css/app.css">
+	</head>
+	<body>
+        <header class="header">
             <h1><?= $pageTitle ?></h1>
-            <h2><?= normalizeString($blocks[$block]['title']); ?></h2>
-            <nav>
-                <?
-                foreach ($blocks as $key => $content) {
-                    if ($key !== $block) {
-                        echo '<a href="?block=' . $key . '">' . normalizeString($content['title']) . '</a>' . "\n";
-                    }
-                }
-                ?>
-            </nav>
-            <? include $blocks[$block]['file']; ?>
-        </div>
-    </body>
+        </header>
+        <nav>
+            <?
+            foreach ($blocks as $key => $content) {
+                $isActive = ($key === $block) ? ' class="active"' : '';
+                echo '<a href="?block=' . $key . '"' . $isActive . '>' . normalizeString($content['title']) . '</a>';
+            }
+            ?>
+        </nav>
+		<div class="page">
+			<h2><?= normalizeString($blocks[$block]['title']); ?></h2>
+<?
+include $blocks[$block]['file'];
+endLesson();
+?>		</div>
+	</body>
 </html>
