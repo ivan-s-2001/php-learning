@@ -4,7 +4,7 @@ startLesson('Ссылки в PHP');
 // https://code.mu/ru/php/book/prime/scope/references-primitive/
 // ⊗ppPmScRP
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	$num1 = 1;
 	$num2 = $num1; // присваиваем
@@ -14,7 +14,7 @@ codeBlock(<<< 'PHP'
 ?>
 PHP);
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	$num1 = 1;
 	$num2 = $num1;
@@ -24,14 +24,14 @@ codeBlock(<<< 'PHP'
 ?>
 PHP);
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	$num1 = 1;
 	$num2 = &$num1; // передаем по ссылке
 ?>
 PHP);
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	$num1 = 1;
 	$num2 = &$num1;
@@ -41,7 +41,7 @@ codeBlock(<<< 'PHP'
 ?>
 PHP);
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	$num1 = 1;
 	$num2 = &$num1;
@@ -52,9 +52,9 @@ codeBlock(<<< 'PHP'
 PHP);
 
 task([
-    'num' => 1,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 1,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	$num1 = 1;
 	$num2 = $num1;
@@ -67,9 +67,9 @@ PHP,
 ]);
 
 task([
-    'num' => 2,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 2,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	$num1 = 1;
 	$num2 = &$num1;
@@ -82,9 +82,9 @@ PHP,
 ]);
 
 task([
-    'num' => 3,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 3,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	$num1 = 1;
 	$num2 = $num1;
@@ -99,9 +99,9 @@ PHP,
 ]);
 
 task([
-    'num' => 4,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 4,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	$num1 = 1;
 	$num2 = &$num1;
@@ -119,7 +119,7 @@ startLesson('Ссылки-массивы в PHP');
 // https://code.mu/ru/php/book/prime/scope/references-arrays/
 // ⊗ppPmScRA
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	$arr1 = [1, 2, 3, 4, 5];
 	$arr2 = $arr1;
@@ -129,7 +129,7 @@ codeBlock(<<< 'PHP'
 ?>
 PHP);
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	$arr1 = [1, 2, 3, 4, 5];
 	$arr2 = &$arr1;
@@ -140,9 +140,9 @@ codeBlock(<<< 'PHP'
 PHP);
 
 task([
-    'num' => 1,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 1,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	$arr1 = [1, 2, 3, 4, 5];
 	
@@ -156,9 +156,9 @@ PHP,
 ]);
 
 task([
-    'num' => 2,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 2,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	$arr1 = [1, 2, 3, 4, 5];
 	
@@ -172,9 +172,9 @@ PHP,
 ]);
 
 task([
-    'num' => 3,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 3,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	$arr1 = [1, 2, 3, 4, 5];
 	
@@ -193,7 +193,7 @@ startLesson('Ссылки в foreach в PHP');
 // https://code.mu/ru/php/book/prime/scope/references-foreach/
 // ⊗ppPmScRF
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	$arr = [1, 2, 3, 4, 5];
 	
@@ -205,7 +205,7 @@ codeBlock(<<< 'PHP'
 ?>
 PHP);
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	$arr = [1, 2, 3, 4, 5];
 	
@@ -218,9 +218,9 @@ codeBlock(<<< 'PHP'
 PHP);
 
 task([
-    'num' => 1,
-    'text' => 'Исправьте следующий код так, чтобы он заработал согласно задуманному:',
-    'code' => <<< 'PHP'
+	'num' => 1,
+	'text' => 'Исправьте следующий код так, чтобы он заработал согласно задуманному:',
+	'code' => <<<'PHP'
 <?
 	$arr = [1, 2, 3, 4, 5];
 
@@ -234,9 +234,9 @@ PHP,
 ]);
 
 task([
-    'num' => 2,
-    'text' => 'Исправьте следующий код так, чтобы он заработал согласно задуманному:',
-    'code' => <<< 'PHP'
+	'num' => 2,
+	'text' => 'Исправьте следующий код так, чтобы он заработал согласно задуманному:',
+	'code' => <<<'PHP'
 <?
 	$arr = [1, 2, 3, 4, 5];
 
@@ -253,7 +253,7 @@ startLesson('Внутренние переменные функций в PHP');
 // https://code.mu/ru/php/book/prime/scope/inner-variables/
 // ⊗ppPmScIV
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	function func()
 	{
@@ -262,7 +262,7 @@ codeBlock(<<< 'PHP'
 ?>
 PHP);
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	function func()
 	{
@@ -275,9 +275,9 @@ codeBlock(<<< 'PHP'
 PHP);
 
 task([
-    'num' => 1,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 1,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	function func()
 	{
@@ -291,9 +291,9 @@ PHP,
 ]);
 
 task([
-    'num' => 2,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 2,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	function func($aaa)
 	{
@@ -310,13 +310,13 @@ startLesson('Внешние переменные функций в PHP');
 // https://code.mu/ru/php/book/prime/scope/outer-variables/
 // ⊗ppPmScOV
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	$num = 1;
 ?>
 PHP);
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	$num = 1;
 	
@@ -330,9 +330,9 @@ codeBlock(<<< 'PHP'
 PHP);
 
 task([
-    'num' => 1,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 1,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	$aaa = 111;
 	
@@ -347,9 +347,9 @@ PHP,
 ]);
 
 task([
-    'num' => 2,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 2,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	$num1 = 1;
 	$num2 = 2;
@@ -368,7 +368,7 @@ startLesson('Одноименные переменные функций в PHP')
 // https://code.mu/ru/php/book/prime/scope/same-variables/
 // ⊗ppPmScSV
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	$num = 1;
 	
@@ -383,9 +383,9 @@ codeBlock(<<< 'PHP'
 PHP);
 
 task([
-    'num' => 1,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 1,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	$aaa = 111;
 	
@@ -401,9 +401,9 @@ PHP,
 ]);
 
 task([
-    'num' => 2,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 2,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	$aaa = 111;
 	
@@ -419,9 +419,9 @@ PHP,
 ]);
 
 task([
-    'num' => 3,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 3,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	$aaa = 111;
 	
@@ -440,7 +440,7 @@ startLesson('Глобальные переменные в PHP');
 // https://code.mu/ru/php/book/prime/scope/global-variables/
 // ⊗ppPmScGV
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	$num = 1;
 	
@@ -454,7 +454,7 @@ codeBlock(<<< 'PHP'
 ?>
 PHP);
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	$num = 1;
 	
@@ -470,9 +470,9 @@ codeBlock(<<< 'PHP'
 PHP);
 
 task([
-    'num' => 1,
-    'text' => 'Исправьте код так, чтобы он заработал согласно задуманному:',
-    'code' => <<< 'PHP'
+	'num' => 1,
+	'text' => 'Исправьте код так, чтобы он заработал согласно задуманному:',
+	'code' => <<<'PHP'
 <?
 	$num = 1;
 	
@@ -488,9 +488,9 @@ PHP,
 ]);
 
 task([
-    'num' => 2,
-    'text' => 'Исправьте код так, чтобы он заработал согласно задуманному:',
-    'code' => <<< 'PHP'
+	'num' => 2,
+	'text' => 'Исправьте код так, чтобы он заработал согласно задуманному:',
+	'code' => <<<'PHP'
 <?
 	$num = 1;
 	
@@ -506,9 +506,9 @@ PHP,
 ]);
 
 task([
-    'num' => 3,
-    'text' => 'Исправьте код так, чтобы он заработал согласно задуманному:',
-    'code' => <<< 'PHP'
+	'num' => 3,
+	'text' => 'Исправьте код так, чтобы он заработал согласно задуманному:',
+	'code' => <<<'PHP'
 <?
 	$num = 1;
 	
@@ -526,7 +526,7 @@ startLesson('Изменение параметров функции в PHP');
 // https://code.mu/ru/php/book/prime/scope/parameters-changing/
 // ⊗ppPmScPC
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	function func($bbb)
 	{
@@ -539,7 +539,7 @@ codeBlock(<<< 'PHP'
 ?>
 PHP);
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	function func($num)
 	{
@@ -553,9 +553,9 @@ codeBlock(<<< 'PHP'
 PHP);
 
 task([
-    'num' => 1,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 1,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	$aaa = 'a';
 	
@@ -571,9 +571,9 @@ PHP,
 ]);
 
 task([
-    'num' => 2,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 2,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	$aaa = 'a';
 	
@@ -589,9 +589,9 @@ PHP,
 ]);
 
 task([
-    'num' => 3,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 3,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	$str = 'a';
 	
@@ -607,9 +607,9 @@ PHP,
 ]);
 
 task([
-    'num' => 4,
-    'text' => 'Расскажите, каким будет результат выполнения кода:',
-    'code' => <<< 'PHP'
+	'num' => 4,
+	'text' => 'Расскажите, каким будет результат выполнения кода:',
+	'code' => <<<'PHP'
 <?
 	$arr = [1, 2, 3, 4, 5];
 	
@@ -628,7 +628,7 @@ startLesson('Параметры-ссылки в PHP');
 // https://code.mu/ru/php/book/prime/scope/parameters-references/
 // ⊗ppPmScPR
 
-codeBlock(<<< 'PHP'
+codeBlock(<<<'PHP'
 <?
 	function func(&$num)
 	{
@@ -642,9 +642,9 @@ codeBlock(<<< 'PHP'
 PHP);
 
 task([
-    'num' => 1,
-    'text' => 'Исправьте следующий код так, чтобы массив изменялся внутри функции:',
-    'code' => <<< 'PHP'
+	'num' => 1,
+	'text' => 'Исправьте следующий код так, чтобы массив изменялся внутри функции:',
+	'code' => <<<'PHP'
 <?
 	$num = 1;
 	
@@ -660,9 +660,9 @@ PHP,
 ]);
 
 task([
-    'num' => 2,
-    'text' => 'Исправьте следующий код так, чтобы массив изменялся внутри функции:',
-    'code' => <<< 'PHP'
+	'num' => 2,
+	'text' => 'Исправьте следующий код так, чтобы массив изменялся внутри функции:',
+	'code' => <<<'PHP'
 <?
 	$arr = [1, 2, 3, 4, 5];
 	
