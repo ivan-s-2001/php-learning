@@ -1337,7 +1337,7 @@ task([
 	'text' => 'С помощью тега <a><code>img</code></a> выведите на экран какую-нибудь картинку.',
 	'solution' => <<<'PHP'
 <?
-	$src = 'image.jpg';
+	$src = 'resources/img/mem1.jpg';
 	echo '<img src="' . $src . '" alt="Картинка">';
 ?>
 PHP
