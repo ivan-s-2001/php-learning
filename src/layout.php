@@ -1,67 +1,106 @@
-<?
+<?php
 
-$lessonIsOpen = false;
-
-function normalizeString(string $value): string
+class Layout
 {
-	return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-}
+	private bool $lessonIsOpen = false;
+	private int $lessonCounter = 1;
+	private int $taskCounter = 1;
+	private array $structureLesson = [];
 
-function startLesson(string $name): void
-{
-	global $lessonIsOpen;
+	public function normalizeString(string $value): string
+	{
+		return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+	}
 
-	endLesson();
+	public function startLesson(string $name): void
+	{
+		$this->endLesson();
+		$lessonId = 'lesson-' . $this->lessonCounter;
+		$this->structureLesson[$this->lessonCounter] = ['title' => $name, 'tasks' => []];
+		$this->lessonCounter++;
 
-	echo "\t\t\t<div class=\"lesson\">\n";
-	echo "\t\t\t\t<h3>" . normalizeString($name) . "</h3>\n";
+		$this->includeTemplate('templates/lesson-start.php', [
+			'lessonId' => $lessonId,
+			'name' => $name,
+		]);
 
-	$lessonIsOpen = true;
-}
+		$this->lessonIsOpen = true;
+	}
 
-function endLesson(): void
-{
-	global $lessonIsOpen;
+	public function endLesson(): void
+	{
+		if ($this->lessonIsOpen) {
+			$this->includeTemplate('templates/lesson-end.php');
+			$this->lessonIsOpen = false;
+		}
+	}
 
-	if ($lessonIsOpen) {
-		echo "\t\t\t</div>\n";
-		$lessonIsOpen = false;
+	public function text(string $text): void
+	{
+		$this->includeTemplate('templates/text.php', [
+			'text' => $text,
+		]);
+	}
+
+	public function codeBlock(string $code): void
+	{
+		$this->includeTemplate('templates/code-block.php', [
+			'code' => $code,
+		]);
+	}
+
+	public function task(array $data): void
+	{
+		$text = $data['text'] ?? '';
+		$code = $data['code'] ?? '';
+		$solution = $data['solution'] ?? '';
+		$taskId = 'task-' . $this->taskCounter;
+
+		$lastLessonKey = array_key_last($this->structureLesson);
+		$this->structureLesson[$lastLessonKey]['tasks'][] = [
+			'id' => $this->taskCounter,
+			'local' => count($this->structureLesson[$lastLessonKey]['tasks']) + 1,
+		];
+
+		$taskNumberInLesson = count($this->structureLesson[$lastLessonKey]['tasks']);
+		$this->taskCounter++;
+
+		$this->includeTemplate('templates/task.php', [
+			'taskId' => $taskId,
+			'taskNumber' => $taskNumberInLesson,
+			'text' => $text,
+			'code' => $code,
+			'solution' => $solution,
+		]);
+	}
+
+	public function getStructureLesson(): array
+	{
+		return $this->structureLesson;
+	}
+
+	public function getTaskCounter(): int
+	{
+		return $this->taskCounter;
+	}
+
+	public function evalCode(string $code): string
+	{
+		ob_start();
+		eval('?>' . $code);
+		return trim(ob_get_clean());
+	}
+
+	public function includeTemplate(string $template, array $params = []): void
+	{
+		$templatePath = __DIR__ . '/../' . $template;
+		if (!file_exists($templatePath)) {
+			throw new Exception("Template not found: {$template}");
+		}
+
+		extract($params);
+		include $templatePath;
 	}
 }
 
-function codeBlock(string $code): void
-{
-	echo "\t\t\t\t\t<div class=\"codePreview\">\n";
-	echo highlight_string($code, true);
-	echo "\n\t\t\t\t\t</div>\n";
-}
-
-function task(array $data): void
-{
-	$num = $data['num'] ?? 0;
-	$text = $data['text'] ?? '';
-	$code = $data['code'] ?? '';
-	$solution = $data['solution'] ?? '';
-
-	echo "\t\t\t\t<div class=\"task\">\n";
-	echo "\t\t\t\t\t<h4>Задача " . $num . "</h4>\n";
-	echo "\t\t\t\t\t<p>" . $text . "</p>\n";
-
-	if ($code !== '') {
-		codeBlock($code);
-	}
-
-	if ($solution !== '') {
-		echo "\t\t\t\t<div class=\"result\">\n";
-		echo "\t\t\t\t\t<div class=\"resultTitle\">Код решения:</div>\n";
-		codeBlock($solution);
-		echo "\t\t\t\t\t<div class=\"resultTitle\">Результат выполнения кода:</div>\n";
-		echo "\t\t\t\t\t<div class=\"resultOutput\">\n";
-		eval ('?>' . $solution);
-		echo "\n\t\t\t\t\t</div>\n";
-		echo "\t\t\t\t</div>\n";
-	}
-
-	echo "\t\t\t\t</div>\n";
-
-}
+$layout = new Layout();

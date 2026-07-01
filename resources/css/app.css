@@ -1,38 +1,16 @@
-/* ============================================================
-   ПЕРЕМЕННЫЕ
-   ============================================================ */
 :root {
-    --header-height: 60px;
-    --nav-width: 280px;
-
-    --page-bg: #eef1f5;
-    --panel-bg: #ffffff;
-    --lesson-bg: #ffffff;
-    --task-bg: #f6f8fb;
-    --code-bg: #f8fafc;
-    --result-bg: #ffffff;
-
-    --text-main: #1f2329;
-    --text-title: #111419;
-    --text-muted: #616b78;
-    --text-soft: #87909c;
-
-    --border: #d6dce3;
-    --border-soft: #e4e8ee;
-
-    --active: #2b3038;
-    --active-hover: #1f242b;
-    --hover: #f1f4f7;
-
-    --link: #24548a;
-    --link-hover: #183b62;
-
-    --shadow-soft: 0 8px 22px rgba(25, 32, 42, 0.05);
+    --bg: #fff;
+    --text: #111;
+    --muted: #999;
+    --border: #eee;
+    --accent: #0066cc;
+    --header: 72px;
+    --left: 260px;
+    --right: 200px;
+    --font: "Inter", system-ui, -apple-system, sans-serif;
+    --mono: "JetBrains Mono", Consolas, monospace;
 }
 
-/* ============================================================
-   СБРОС
-   ============================================================ */
 * {
     margin: 0;
     padding: 0;
@@ -40,471 +18,1246 @@
 }
 
 html {
-    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
 }
 
 body {
-    min-height: 100vh;
-    padding-top: var(--header-height);
-
-    background: var(--page-bg);
-    color: var(--text-main);
-
-    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.58;
+    font-family: var(--font);
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--text);
+    background: var(--bg);
 }
 
-/* ============================================================
-   ШАПКА
-   ============================================================ */
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 .header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 10;
-
-    height: var(--header-height);
-    padding: 0 30px;
-
+    z-index: 100;
+    height: var(--header);
+    padding: 0 40px;
     display: flex;
     align-items: center;
-
-    background: var(--panel-bg);
+    background: var(--bg);
     border-bottom: 1px solid var(--border);
-    box-shadow: 0 1px 0 rgba(18, 24, 31, 0.02);
 }
 
 .header h1 {
-    color: var(--text-title);
-    font-size: 22px;
-    font-weight: 650;
-    line-height: 1.2;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
 }
 
-/* ============================================================
-   БОКОВАЯ ПАНЕЛЬ
-   ============================================================ */
-nav {
+/* Левая панель */
+.theme-nav {
     position: fixed;
-    top: var(--header-height);
+    top: var(--header);
     left: 0;
     bottom: 0;
-
-    width: var(--nav-width);
-    padding: 12px;
-
-    background: var(--panel-bg);
+    width: var(--left);
+    padding: 32px 0;
     border-right: 1px solid var(--border);
     overflow-y: auto;
+    z-index: 99;
+    background: var(--bg);
 }
 
-nav a {
+.theme-nav a {
     display: block;
-    margin-bottom: 3px;
-    padding: 9px 12px;
-
-    color: #3f4752;
-    text-decoration: none;
-    font-size: 15px;
-    line-height: 1.35;
-
-    border-radius: 5px;
+    padding: 12px 32px;
+    font-size: 1rem;
+    color: var(--muted);
+    transition: color 0.1s;
+    border-left: 2px solid transparent;
 }
 
-nav a:hover {
-    background: var(--hover);
-    color: var(--text-title);
+.theme-nav a:hover {
+    color: var(--text);
 }
 
-nav a.active {
-    background: var(--active);
-    color: #ffffff;
+.theme-nav a.active {
+    color: var(--accent);
     font-weight: 600;
+    border-left-color: var(--accent);
 }
 
-nav a.active:hover {
-    background: var(--active-hover);
-    color: #ffffff;
+/* Правая панель — двухуровневая */
+.task-nav {
+    position: fixed;
+    top: var(--header);
+    right: 0;
+    bottom: 0;
+    width: var(--right);
+    padding: 24px 0;
+    border-left: 1px solid var(--border);
+    overflow-y: auto;
+    z-index: 99;
+    background: var(--bg);
 }
 
-/* ============================================================
-   ОСНОВНОЙ КОНТЕНТ
-   ============================================================ */
-.page {
-    margin-left: var(--nav-width);
-    padding: 34px 44px 64px;
-}
-
-h2,
-.lesson {
-    max-width: 1120px;
-}
-
-h2 {
-    margin-bottom: 24px;
-
-    color: var(--text-title);
-    font-size: 32px;
-    font-weight: 650;
-    line-height: 1.18;
-}
-
-h3 {
-    margin-bottom: 18px;
-
-    color: #161a20;
-    font-size: 23px;
-    font-weight: 650;
-    line-height: 1.25;
-}
-
-h4 {
-    margin-bottom: 10px;
-
-    color: var(--text-muted);
-    font-size: 13px;
-    font-weight: 700;
-    line-height: 1.3;
-    text-transform: uppercase;
-    letter-spacing: 0.35px;
-}
-
-/* ============================================================
-   УРОК
-   ============================================================ */
-.lesson {
-    margin-bottom: 22px;
-    padding: 26px 30px 28px;
-
-    background: var(--lesson-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    box-shadow: var(--shadow-soft);
-}
-
-.lesson:last-child {
-    margin-bottom: 0;
-}
-
-/* ============================================================
-   ЗАДАНИЕ
-   ============================================================ */
-.task {
-    margin-top: 16px;
-    padding: 18px 20px;
-
-    background: var(--task-bg);
-    border: 1px solid var(--border-soft);
-    border-radius: 7px;
-}
-
-.task:first-of-type {
-    margin-top: 0;
-}
-
-.task + .task {
-    margin-top: 14px;
-}
-
-/* ============================================================
-   РЕЗУЛЬТАТ
-   Пока блока нет в разметке, стили оставлены под будущее подключение.
-   ============================================================ */
-.result {
-    margin-top: 16px;
-    margin-left: 18px;
-    padding: 18px 20px;
-
-    background: var(--result-bg);
-    border: 1px solid var(--border-soft);
-    border-radius: 7px;
-}
-
-.resultTitle {
-    margin: 12px 0 8px;
-
-    color: var(--text-muted);
-    font-size: 14px;
-    font-weight: 700;
-}
-
-.resultTitle:first-child {
-    margin-top: 0;
-}
-
-.resultOutput {
-    max-width: 100%;
-    padding: 14px 16px;
-
-    background: var(--code-bg);
-    border: 1px solid var(--border-soft);
-    border-radius: 6px;
-
-    color: #1f2328;
-
-    font-family: 'Fira Code', Consolas, 'Courier New', monospace;
-    font-size: 15px;
-    line-height: 1.55;
-    tab-size: 4;
-    white-space: pre-wrap;
-
-    overflow-x: auto;
-}
-
-.resultOutput p {
+.lesson-nav {
+    padding: 0 16px;
     margin-bottom: 4px;
 }
 
-.resultOutput p:last-child {
-    margin-bottom: 0;
+.lesson-nav:first-child {
+    margin-top: 0;
 }
 
-/* ============================================================
-   ТЕКСТ
-   ============================================================ */
+.lesson-link {
+    display: block;
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+    border-radius: 4px;
+    transition: background 0.1s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lesson-link:hover {
+    background: #f5f5f5;
+    text-decoration: none;
+}
+
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 2px 0 12px 0;
+}
+
+.task-list li {
+    margin: 0;
+}
+
+.task-list a {
+    display: block;
+    padding: 5px 12px 5px 24px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    border-radius: 4px;
+    transition: all 0.1s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.task-list a:hover {
+    color: var(--text);
+    background: #f5f5f5;
+    text-decoration: none;
+}
+
+.task-list a:target,
+.task-list a.active {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.page {
+    margin: var(--header) var(--right) 0 var(--left);
+    padding: 64px 72px 140px;
+    min-height: calc(100vh - var(--header));
+}
+
+h2 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+    line-height: 1.15;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 3.5em 0 0.8em;
+    line-height: 1.3;
+}
+
+h3:first-child {
+    margin-top: 0;
+}
+
+h4 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+
+.lesson {
+    margin-bottom: 64px;
+}
+
+.lesson h3 {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    padding: 12px 0;
+    z-index: 10;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: var(--border);
+    margin: 56px 0;
+}
+
+.task {
+    margin-top: 40px;
+    padding: 32px;
+    background: #fafafa;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.task:target {
+    border-color: var(--accent);
+    box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.task + .task {
+    margin-top: 40px;
+}
+
+.result {
+    margin-top: 32px;
+    margin-left: 32px;
+}
+
+.resultTitle {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+
+.resultOutput {
+    padding: 24px 28px;
+    background: #fafafa;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    overflow-x: auto;
+}
+
+.codePreview {
+    margin-top: 20px;
+    padding: 24px 28px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    overflow-x: auto;
+}
+
+.codePreview code {
+    display: block;
+}
+
+span[style*="color: #0000BB"] {
+    color: var(--accent) !important;
+    font-weight: 600;
+}
+
+span[style*="color: #007700"] {
+    color: #333 !important;
+}
+
+span[style*="color: #DD0000"] {
+    color: #555 !important;
+    font-weight: 500;
+}
+
+span[style*="color: #FF8000"] {
+    color: #aaa !important;
+}
+
+p code, li code {
+    padding: 3px 10px;
+    background: #f0f4f8;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 0.9em;
+    color: var(--accent);
+    font-weight: 500;
+}
+
 p {
-    margin-bottom: 10px;
+    margin-bottom: 18px;
+    color: #333;
+    font-size: 18px;
 }
 
 p:last-child {
     margin-bottom: 0;
 }
 
-a {
-    color: var(--link);
-}
-
-a:hover {
-    color: var(--link-hover);
-}
-
-ul,
-ol {
-    margin: 10px 0 10px 22px;
-}
-
-li {
-    margin-bottom: 6px;
-}
-
-/* ============================================================
-   ПОДСКАЗКИ
-   ============================================================ */
-.hint {
-    margin: 12px 0;
-
-    color: var(--text-muted);
-    font-size: 15px;
-}
-
-.hint:last-child {
-    margin-bottom: 0;
-}
-
-/* ============================================================
-   ИНЛАЙН-КОД
-   ============================================================ */
-code {
-    padding: 2px 6px;
-
-    background: #e9eef4;
-    color: #1d232b;
-
-    border-radius: 4px;
-
-    font-family: 'Fira Code', Consolas, 'Courier New', monospace;
-    font-size: 0.9em;
-}
-
-/* ============================================================
-   БЛОК КОДА
-   ============================================================ */
-.codePreview {
-    max-width: 100%;
-    margin-top: 12px;
-    padding: 15px 18px;
-
-    background: var(--code-bg);
-    border: 1px solid var(--border-soft);
-    border-radius: 6px;
-
-    color: #1f2328;
-
-    font-family: 'Fira Code', Consolas, 'Courier New', monospace;
-    font-size: 15px;
-    line-height: 1.6;
-    tab-size: 4;
-
-    overflow-x: auto;
-}
-
-h3 + .codePreview,
-h4 + .codePreview,
-p + .codePreview {
-    margin-top: 12px;
-}
-
-.codePreview code {
-    display: block;
-    padding: 0;
-
-    background: none;
-    color: inherit;
-
-    font-size: inherit;
-}
-
-.codePreview span {
-    font-family: inherit;
-}
-
-/* ============================================================
-   СКРОЛЛБАР
-   ============================================================ */
-nav::-webkit-scrollbar,
-.codePreview::-webkit-scrollbar,
-.resultOutput::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-nav::-webkit-scrollbar-thumb,
-.codePreview::-webkit-scrollbar-thumb,
-.resultOutput::-webkit-scrollbar-thumb {
-    background: #c3cad3;
-    border: 3px solid transparent;
-    border-radius: 10px;
-    background-clip: content-box;
-}
-
-nav::-webkit-scrollbar-thumb:hover,
-.codePreview::-webkit-scrollbar-thumb:hover,
-.resultOutput::-webkit-scrollbar-thumb:hover {
-    background: #aab2bd;
-    border: 3px solid transparent;
-    background-clip: content-box;
-}
-
-/* ============================================================
-   ФОКУС
-   ============================================================ */
 :focus-visible {
-    outline: 2px solid #4f5966;
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
+    border-radius: 2px;
 }
 
-nav a:focus-visible {
-    outline-offset: -2px;
-}
-
-/* ============================================================
-   АДАПТИВ
-   ============================================================ */
-@media (max-width: 900px) {
+/* ============================================
+   1400px+
+   ============================================ */
+@media (min-width: 1400px) {
     :root {
-        --header-height: 64px;
+        --left: 280px;
+        --right: 220px;
     }
 
     body {
-        padding-top: 0;
-    }
-
-    .header {
-        position: static;
-        min-height: var(--header-height);
-        padding: 16px 20px;
-    }
-
-    nav {
-        position: static;
-        width: 100%;
-        padding: 10px;
-
-        display: flex;
-        gap: 6px;
-
-        border-right: 0;
-        border-bottom: 1px solid var(--border);
-
-        overflow-x: auto;
-        overflow-y: hidden;
-    }
-
-    nav a {
-        flex: 0 0 auto;
-        margin-bottom: 0;
-        white-space: nowrap;
+        font-size: 19px;
     }
 
     .page {
-        margin-left: 0;
-        padding: 26px 20px 44px;
+        padding: 72px 88px 160px;
     }
 
     h2 {
-        font-size: 28px;
+        font-size: 2.8rem;
     }
 
     h3 {
-        font-size: 22px;
-    }
-
-    .lesson {
-        padding: 22px 20px;
+        font-size: 1.65rem;
     }
 
     .task {
-        padding: 18px 16px;
+        padding: 40px;
     }
 
-    .result {
-        margin-left: 12px;
-        padding: 16px;
+    .task-nav {
+        padding: 28px 0;
+    }
+
+    .lesson-link {
+        font-size: 0.85rem;
+        padding: 10px 12px;
+    }
+
+    .task-list a {
+        font-size: 0.8rem;
     }
 }
 
-@media (max-width: 520px) {
+/* ============================================
+   1200px — 1400px
+   ============================================ */
+@media (max-width: 1400px) and (min-width: 1201px) {
+    :root {
+        --left: 250px;
+        --right: 190px;
+    }
+
+    .page {
+        padding: 60px 64px 130px;
+    }
+}
+
+/* ============================================
+   1100px — 1200px
+   ============================================ */
+@media (max-width: 1200px) and (min-width: 1025px) {
+    :root {
+        --left: 220px;
+        --right: 170px;
+    }
+
+    .page {
+        padding: 52px 48px 110px;
+    }
+
+    h2 {
+        font-size: 2.1rem;
+    }
+
+    h3 {
+        font-size: 1.35rem;
+    }
+
+    .theme-nav a {
+        padding: 10px 22px;
+        font-size: 0.9rem;
+    }
+
+    .task-nav {
+        padding: 20px 0;
+    }
+
+    .lesson-link {
+        font-size: 0.78rem;
+        padding: 7px 10px;
+    }
+
+    .task-list a {
+        font-size: 0.74rem;
+        padding: 4px 10px 4px 20px;
+    }
+}
+
+/* ============================================
+   1024px — 1100px
+   ============================================ */
+@media (max-width: 1100px) and (min-width: 901px) {
+    :root {
+        --header: 64px;
+        --left: 200px;
+        --right: 160px;
+    }
+
+    body {
+        font-size: 17px;
+    }
+
+    .header {
+        padding: 0 28px;
+    }
+
+    .header h1 {
+        font-size: 1.1rem;
+    }
+
+    .page {
+        padding: 44px 36px 90px;
+    }
+
+    h2 {
+        font-size: 1.9rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    .theme-nav {
+        padding: 20px 0;
+    }
+
+    .theme-nav a {
+        padding: 10px 18px;
+        font-size: 0.85rem;
+    }
+
+    .task-nav {
+        padding: 20px 0;
+    }
+
+    .lesson-nav {
+        padding: 0 12px;
+    }
+
+    .lesson-link {
+        font-size: 0.75rem;
+        padding: 6px 8px;
+    }
+
+    .task-list a {
+        font-size: 0.72rem;
+        padding: 4px 8px 4px 18px;
+    }
+
+    .task {
+        margin-top: 32px;
+        padding: 24px;
+    }
+
+    .task + .task {
+        margin-top: 32px;
+    }
+
+    .result {
+        margin-left: 24px;
+        margin-top: 24px;
+    }
+
+    .resultOutput {
+        padding: 18px 22px;
+        font-size: 0.9rem;
+    }
+
+    .codePreview {
+        padding: 18px 22px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ============================================
+   768px — 900px
+   ============================================ */
+@media (max-width: 900px) and (min-width: 769px) {
+    :root {
+        --header: 60px;
+        --left: 170px;
+        --right: 140px;
+    }
+
+    body {
+        font-size: 16px;
+    }
+
+    .header {
+        padding: 0 22px;
+    }
+
+    .header h1 {
+        font-size: 1rem;
+    }
+
+    .page {
+        padding: 36px 28px 80px;
+    }
+
+    h2 {
+        font-size: 1.7rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+        margin: 2.5em 0 0.6em;
+    }
+
+    .theme-nav {
+        padding: 16px 0;
+    }
+
+    .theme-nav a {
+        padding: 9px 14px;
+        font-size: 0.8rem;
+    }
+
+    .task-nav {
+        padding: 16px 0;
+    }
+
+    .lesson-nav {
+        padding: 0 10px;
+    }
+
+    .lesson-link {
+        font-size: 0.72rem;
+        padding: 6px 8px;
+    }
+
+    .task-list {
+        margin-bottom: 8px;
+    }
+
+    .task-list a {
+        font-size: 0.7rem;
+        padding: 3px 8px 3px 16px;
+    }
+
+    .lesson {
+        margin-bottom: 48px;
+    }
+
+    .task {
+        margin-top: 28px;
+        padding: 20px;
+        border-radius: 6px;
+    }
+
+    .task + .task {
+        margin-top: 28px;
+    }
+
+    .result {
+        margin-left: 16px;
+        margin-top: 20px;
+    }
+
+    .resultOutput {
+        padding: 16px;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
+
+    .codePreview {
+        padding: 16px;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
+
+    hr {
+        margin: 40px 0;
+    }
+}
+
+/* ============================================
+   640px — 768px — навигация сверху и снизу
+   ============================================ */
+@media (max-width: 768px) and (min-width: 641px) {
+    :root {
+        --header: 56px;
+        --left: 0;
+        --right: 0;
+    }
+
+    body {
+        font-size: 16px;
+    }
+
+    .header {
+        height: var(--header);
+        padding: 0 20px;
+    }
+
+    .header h1 {
+        font-size: 1rem;
+    }
+
+    /* Левая — горизонтально сверху */
+    .theme-nav {
+        position: fixed;
+        top: var(--header);
+        left: 0;
+        right: 0;
+        bottom: auto;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        white-space: nowrap;
+        z-index: 99;
+    }
+
+    .theme-nav a {
+        display: inline-block;
+        padding: 10px 16px;
+        font-size: 0.82rem;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        flex-shrink: 0;
+    }
+
+    .theme-nav a.active {
+        border-left: none;
+        border-bottom-color: var(--accent);
+    }
+
+    /* Правая — горизонтально снизу */
+    .task-nav {
+        position: fixed;
+        top: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: auto;
+        max-height: 40vh;
+        padding: 6px 0;
+        border-left: none;
+        border-top: 1px solid var(--border);
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 99;
+        background: var(--bg);
+    }
+
+    .lesson-nav {
+        padding: 0 16px;
+        margin-bottom: 6px;
+    }
+
+    .lesson-link {
+        display: block;
+        font-size: 0.8rem;
+        padding: 6px 0;
+        color: var(--text);
+    }
+
+    .task-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin: 2px 0 4px 0;
+    }
+
+    .task-list a {
+        display: inline-block;
+        padding: 4px 10px;
+        font-size: 0.74rem;
+        background: #f5f5f5;
+        border-radius: 12px;
+    }
+
+    .page {
+        margin: calc(var(--header) + 45px) 0 0 0;
+        padding: 32px 24px 40px;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3 {
+        font-size: 1.15rem;
+        margin: 2em 0 0.5em;
+    }
+
+    .lesson {
+        margin-bottom: 40px;
+    }
+
+    .lesson h3 {
+        top: calc(var(--header) + 45px);
+        padding: 8px 0;
+    }
+
+    .task {
+        margin-top: 24px;
+        padding: 18px;
+    }
+
+    .task + .task {
+        margin-top: 24px;
+    }
+
+    .result {
+        margin-left: 14px;
+        margin-top: 18px;
+    }
+
+    .resultOutput {
+        padding: 14px;
+        font-size: 0.84rem;
+    }
+
+    .codePreview {
+        padding: 14px;
+        font-size: 0.84rem;
+    }
+
+    hr {
+        margin: 32px 0;
+    }
+}
+
+/* ============================================
+   480px — 640px
+   ============================================ */
+@media (max-width: 640px) and (min-width: 481px) {
+    :root {
+        --header: 52px;
+        --left: 0;
+        --right: 0;
+    }
+
     body {
         font-size: 15px;
     }
 
+    .header {
+        height: var(--header);
+        padding: 0 16px;
+    }
+
     .header h1 {
-        font-size: 20px;
+        font-size: 0.95rem;
+    }
+
+    .theme-nav {
+        position: fixed;
+        top: var(--header);
+        left: 0;
+        right: 0;
+        bottom: auto;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        z-index: 99;
+    }
+
+    .theme-nav a {
+        display: inline-block;
+        padding: 9px 12px;
+        font-size: 0.78rem;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        flex-shrink: 0;
+    }
+
+    .theme-nav a.active {
+        border-left: none;
+        border-bottom-color: var(--accent);
+    }
+
+    .task-nav {
+        position: fixed;
+        top: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        max-height: 38vh;
+        padding: 6px 0;
+        border-left: none;
+        border-top: 1px solid var(--border);
+        overflow-y: auto;
+        z-index: 99;
+        background: var(--bg);
+    }
+
+    .lesson-nav {
+        padding: 0 12px;
+        margin-bottom: 4px;
+    }
+
+    .lesson-link {
+        font-size: 0.76rem;
+        padding: 5px 0;
+    }
+
+    .task-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3px;
+        margin: 2px 0 4px 0;
+    }
+
+    .task-list a {
+        display: inline-block;
+        padding: 3px 8px;
+        font-size: 0.7rem;
+        background: #f5f5f5;
+        border-radius: 10px;
     }
 
     .page {
-        padding: 22px 14px 36px;
+        margin: calc(var(--header) + 41px) 0 0 0;
+        padding: 24px 16px 32px;
     }
 
     h2 {
-        margin-bottom: 20px;
-        font-size: 26px;
+        font-size: 1.4rem;
     }
 
     h3 {
-        font-size: 21px;
+        font-size: 1.05rem;
     }
 
     .lesson {
-        padding: 18px 16px;
-        border-radius: 7px;
+        margin-bottom: 36px;
+    }
+
+    .lesson h3 {
+        top: calc(var(--header) + 41px);
+        padding: 6px 0;
     }
 
     .task {
-        margin-top: 14px;
-        padding: 16px 14px;
+        margin-top: 20px;
+        padding: 14px;
+        border-radius: 5px;
+    }
+
+    .task + .task {
+        margin-top: 20px;
+    }
+
+    .result {
+        margin-left: 10px;
+        margin-top: 16px;
+    }
+
+    .resultOutput {
+        padding: 12px;
+        font-size: 0.8rem;
+        border-radius: 5px;
+    }
+
+    .codePreview {
+        padding: 12px;
+        font-size: 0.8rem;
+        border-radius: 5px;
+    }
+
+    hr {
+        margin: 24px 0;
+    }
+
+    p {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+}
+
+/* ============================================
+   360px — 480px
+   ============================================ */
+@media (max-width: 480px) and (min-width: 361px) {
+    :root {
+        --header: 48px;
+        --left: 0;
+        --right: 0;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    .header {
+        height: var(--header);
+        padding: 0 12px;
+    }
+
+    .header h1 {
+        font-size: 0.88rem;
+    }
+
+    .theme-nav {
+        position: fixed;
+        top: var(--header);
+        left: 0;
+        right: 0;
+        bottom: auto;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        z-index: 99;
+    }
+
+    .theme-nav a {
+        display: inline-block;
+        padding: 8px 10px;
+        font-size: 0.74rem;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        flex-shrink: 0;
+    }
+
+    .theme-nav a.active {
+        border-left: none;
+        border-bottom-color: var(--accent);
+    }
+
+    .task-nav {
+        position: fixed;
+        top: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        max-height: 35vh;
+        padding: 4px 0;
+        border-left: none;
+        border-top: 1px solid var(--border);
+        overflow-y: auto;
+        z-index: 99;
+        background: var(--bg);
+    }
+
+    .lesson-nav {
+        padding: 0 10px;
+        margin-bottom: 3px;
+    }
+
+    .lesson-link {
+        font-size: 0.72rem;
+        padding: 4px 0;
+    }
+
+    .task-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px;
+        margin: 1px 0 3px 0;
+    }
+
+    .task-list a {
+        display: inline-block;
+        padding: 2px 7px;
+        font-size: 0.68rem;
+        background: #f5f5f5;
+        border-radius: 8px;
+    }
+
+    .page {
+        margin: calc(var(--header) + 37px) 0 0 0;
+        padding: 20px 12px 24px;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    h3 {
+        font-size: 0.95rem;
+        margin: 1.5em 0 0.4em;
+    }
+
+    h4 {
+        font-size: 0.65rem;
+    }
+
+    .lesson {
+        margin-bottom: 28px;
+    }
+
+    .lesson h3 {
+        top: calc(var(--header) + 37px);
+        padding: 6px 0;
+    }
+
+    .task {
+        margin-top: 16px;
+        padding: 12px;
+        border-radius: 4px;
+    }
+
+    .task + .task {
+        margin-top: 16px;
     }
 
     .result {
         margin-left: 8px;
-        padding: 14px;
+        margin-top: 14px;
     }
 
-    .codePreview,
+    .resultTitle {
+        font-size: 0.65rem;
+    }
+
     .resultOutput {
-        padding: 14px;
+        padding: 10px;
+        font-size: 0.76rem;
+        border-radius: 4px;
+    }
+
+    .codePreview {
+        margin-top: 12px;
+        padding: 10px;
+        font-size: 0.76rem;
+        border-radius: 4px;
+    }
+
+    hr {
+        margin: 20px 0;
+    }
+
+    p {
         font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    p code, li code {
+        padding: 2px 5px;
+        font-size: 0.82em;
+    }
+}
+
+/* ============================================
+   320px — 360px
+   ============================================ */
+@media (max-width: 360px) {
+    :root {
+        --header: 44px;
+        --left: 0;
+        --right: 0;
+    }
+
+    body {
+        font-size: 13px;
+    }
+
+    .header {
+        height: var(--header);
+        padding: 0 10px;
+    }
+
+    .header h1 {
+        font-size: 0.8rem;
+    }
+
+    .theme-nav {
+        position: fixed;
+        top: var(--header);
+        left: 0;
+        right: 0;
+        bottom: auto;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        z-index: 99;
+    }
+
+    .theme-nav a {
+        display: inline-block;
+        padding: 7px 8px;
+        font-size: 0.7rem;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        flex-shrink: 0;
+    }
+
+    .theme-nav a.active {
+        border-left: none;
+        border-bottom-color: var(--accent);
+    }
+
+    .task-nav {
+        position: fixed;
+        top: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        max-height: 32vh;
+        padding: 3px 0;
+        border-left: none;
+        border-top: 1px solid var(--border);
+        overflow-y: auto;
+        z-index: 99;
+        background: var(--bg);
+    }
+
+    .lesson-nav {
+        padding: 0 8px;
+        margin-bottom: 2px;
+    }
+
+    .lesson-link {
+        font-size: 0.68rem;
+        padding: 3px 0;
+    }
+
+    .task-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px;
+        margin: 1px 0 2px 0;
+    }
+
+    .task-list a {
+        display: inline-block;
+        padding: 2px 6px;
+        font-size: 0.64rem;
+        background: #f5f5f5;
+        border-radius: 6px;
+    }
+
+    .page {
+        margin: calc(var(--header) + 33px) 0 0 0;
+        padding: 16px 10px 20px;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+    }
+
+    h3 {
+        font-size: 0.88rem;
+        margin: 1.3em 0 0.3em;
+    }
+
+    h4 {
+        font-size: 0.6rem;
+        letter-spacing: 0.04em;
+    }
+
+    .lesson {
+        margin-bottom: 24px;
+    }
+
+    .lesson h3 {
+        top: calc(var(--header) + 33px);
+        padding: 4px 0;
+    }
+
+    .task {
+        margin-top: 14px;
+        padding: 10px;
+        border-radius: 3px;
+    }
+
+    .task + .task {
+        margin-top: 14px;
+    }
+
+    .result {
+        margin-left: 6px;
+        margin-top: 12px;
+    }
+
+    .resultTitle {
+        font-size: 0.6rem;
+        margin-bottom: 6px;
+    }
+
+    .resultOutput {
+        padding: 8px;
+        font-size: 0.72rem;
+        border-radius: 3px;
+        line-height: 1.6;
+    }
+
+    .codePreview {
+        margin-top: 10px;
+        padding: 8px;
+        font-size: 0.72rem;
+        border-radius: 3px;
+        line-height: 1.6;
+    }
+
+    hr {
+        margin: 16px 0;
+    }
+
+    p {
+        font-size: 13px;
+        margin-bottom: 8px;
+        line-height: 1.6;
+    }
+
+    p code, li code {
+        padding: 1px 4px;
+        font-size: 0.8em;
+        border-radius: 2px;
     }
 }

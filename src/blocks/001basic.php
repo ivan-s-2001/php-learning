@@ -1,18 +1,35 @@
 <?
 
 startLesson('Введение в язык PHP для новичков');
-// https://code.mu/ru/php/book/prime/basis/intro/
-// ⊗ppPmBsInr
+text(
+	'Язык PHP предназначен для создания
+	динамический сайтов. С его помощью,
+	например, можно сделать форум, интернет-магазин,
+	доску объявления и тому подобные вещи.<br />
+	Технически PHP нужен для генерации HTML
+	кода. Как правило тексты вашего сайта
+	хранятся в базе данных. PHP взаимодействует
+	с базой через язык SQL, получает тексты
+	и формирует из них итоговый HTML код,
+	который и отправляется в браузер
+	пользователя.
+	<br />
+	Для изучения PHP вам нужно знать
+	основы верстки, хотя бы на уровне
+	<a href="https://code.mu/ru/markup/book/prime/" target="_blank">основного учебника верстки</a>.'
+);
 
 startLesson('Начало работы с PHP');
-// https://code.mu/ru/php/book/prime/basis/start/
-// ⊗ppPmBsSt
-
+text(
+	'Для запуска PHP локально на вашем компьютере необходима программа-сервер. Для windows лучший вариант - OpenServer, для linux - LAMP, для macos - MAMP.<br />
+Установка такого сервера займет некоторое время. Чтобы не останавливаться в обучении, выполняйте пока PHP код в онлайн редакторе, например, в этом.'
+);
 startLesson('Выполнение кода PHP');
-// https://code.mu/ru/php/book/prime/basis/run/
-// ⊗ppPmBsRn
-
-codeBlock(<<<'PHP'
+text(
+	'Пусть у вас уже есть установленный PHP сервер. В нем ваши программы будут располагаться в файлах с расширением php. Эти файлы на самом деле представляют собой обычные HTML файлы, в которых мы можем писать HTML код наших страниц, вот так:'
+);
+codeBlock(
+	<<<'PHP'
 <!DOCTYPE html>
 <html>
 	<head>
@@ -23,9 +40,11 @@ codeBlock(<<<'PHP'
 		my first program
 	</body>
 </html>
-PHP);
-
-codeBlock(<<<'PHP'
+PHP
+);
+text('В этих файлах прямо внутри HTML кода мы можем писать PHP код. Он пишется в специальных скобках:');
+codeBlock(
+	<<<'PHP'
 <!DOCTYPE html>
 <html>
 	<head>
@@ -38,68 +57,87 @@ codeBlock(<<<'PHP'
 		?>
 	</body>
 </html>
-PHP);
-
-codeBlock(<<<'PHP'
+PHP
+);
+text(
+	'Если запустить этот файл через PHP сервер, то сервер выполнит команды PHP и результат отправит в браузер. Команда echo, которую вы там можете увидеть, просто выполняет вывод заданной строки. В результате в браузер улетит только HTML код, а вместо PHP кода будет стоять результат его выполнения.<br />
+Для простоты на этапе обучения лишние теги можно не писать:'
+);
+codeBlock(
+	<<<'PHP'
 <?
 	echo 'my first program';
 ?>
-PHP);
+PHP
+);
 
 startLesson('Проблема с кодировками');
-// https://code.mu/ru/php/book/prime/basis/encoding-problem/
-// ⊗ppPmBsEP
-
-codeBlock(<<<'PHP'
+text(
+	'Чтобы кириллический текст выводился корректно, необходимо выполнение нескольких условий. Во-первых, кодировка самого файла должна быть utf-8. Во-вторых, нужно указать кодировку в HTML коде:'
+);
+codeBlock(
+	<<<'PHP'
 <meta charset="utf-8">
 <?
 	echo 'моя первая программа';
 ?>
-PHP);
-
-codeBlock(<<<'PHP'
+PHP
+);
+text('Иногда описанные процедуры не помогают и тогда может помочь команда <code>mb_internal_encoding</code>:');
+codeBlock(
+	<<<'PHP'
 <meta charset="utf-8">
 <?
 	mb_internal_encoding('UTF-8');
 	echo 'моя первая программа';
 ?>
-PHP);
+PHP
+);
 
 startLesson('Вывод ошибок PHP');
 // https://code.mu/ru/php/book/prime/basis/errors-output/
 // ⊗ppPmBsErO
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	error_reporting(E_ALL);
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	ini_set('display_errors', 'on');
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	error_reporting(E_ALL);
 	ini_set('display_errors', 'on');
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	error_reporting(0);
 	ini_set('display_errors', 'off');
 ?>
-PHP);
+PHP
+);
 
 startLesson('Полный код для запуска PHP');
 // https://code.mu/ru/php/book/prime/basis/full-launching-code/
 // ⊗ppPmBsFLC
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <meta charset="utf-8">
 <?
 	error_reporting(E_ALL);
@@ -108,13 +146,15 @@ codeBlock(<<<'PHP'
 	
 	echo 'my first program';
 ?>
-PHP);
+PHP
+);
 
 startLesson('Улучшенный код для запуска');
 // https://code.mu/ru/php/book/prime/basis/improved-launching-code/
 // ⊗ppPmBsILC
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <meta charset="utf-8">
 <?
 	error_reporting(E_ALL);
@@ -123,41 +163,51 @@ codeBlock(<<<'PHP'
 	
 	include 'code.php';
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo 'test';
 ?>
-PHP);
+PHP
+);
 
 startLesson('Обзор начальных PHP команд');
 // https://code.mu/ru/php/book/prime/basis/overview/
 // ⊗ppPmBsOv
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo 'hello';
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo 123;
 ?>
-PHP);
+PHP
+);
 
 startLesson('Комментарии в PHP');
 // https://code.mu/ru/php/book/prime/basis/comments/
 // ⊗ppPmBsCm
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo 'hello'; // комментарий
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	/*
 		комментарий
@@ -165,39 +215,48 @@ codeBlock(<<<'PHP'
 	*/
 	echo 'hello';
 ?>
-PHP);
+PHP
+);
 
 startLesson('Комментарии в учебнике');
 // https://code.mu/ru/php/book/prime/basis/book-comments/
 // ⊗ppPmBsBC
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo 'hello'; // выведет 'hello'
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo 12345; // выведет 12345
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo '12345'; // выведет '12345'
 ?>
-PHP);
+PHP
+);
 
 startLesson('Функция var_dump в PHP');
 // https://code.mu/ru/php/book/prime/basis/dumping/
 // ⊗ppPmBsDm
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	var_dump('12345'); // выведет '12345' и еще некоторую полезную инфу
 ?>
-PHP);
+PHP
+);
 
 startLesson('Функции в PHP');
 // https://code.mu/ru/php/book/prime/basis/functions/
@@ -211,18 +270,22 @@ startLesson('Использование переменных в PHP');
 // https://code.mu/ru/php/book/prime/basis/variables-usage/
 // ⊗ppPmBsVU
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 3;
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 3;
 	echo $a; // выведет на экран число 3
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -233,13 +296,15 @@ task([
 	echo $num;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Изменения значений переменных в PHP');
 // https://code.mu/ru/php/book/prime/basis/variables-values-changing/
 // ⊗ppPmBsVVCh
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 1;  // записываем в переменную значение 1
 	echo $a; // выведет 1
@@ -247,7 +312,8 @@ codeBlock(<<<'PHP'
 	$a = 2;  // записываем теперь значение 2, затирая значение 1
 	echo $a; // выведет 2
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -260,39 +326,48 @@ task([
 	echo $a;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Математические операции с числами в PHP');
 // https://code.mu/ru/php/book/prime/basis/math-operations-numbers/
 // ⊗ppPmBsMONu
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 1 + 2;
 	echo $a; // выведет 3
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$b = 3 - 2;
 	echo $b; // выведет 1
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$c = 3 * 2;
 	echo $c; // выведет 6
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$d = 4 / 2;
 	echo $d; // выведет 2
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -303,28 +378,33 @@ task([
 	echo $a;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Математические операции с переменными в PHP');
 // https://code.mu/ru/php/book/prime/basis/math-operations-variables/
 // ⊗ppPmBsMOV
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 1;
 	$b = 2;
 	echo $a + $b; // выведет 3
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 1;
 	$b = 2;
 	$c = $a + $b; // запишем сумму в переменную $c
 	echo $c;      // выведет 3
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -339,6 +419,7 @@ task([
 	echo $a / $b; // частное
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -352,6 +433,7 @@ task([
 	echo $res;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -365,6 +447,7 @@ task([
 	echo $a + $b + $c;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -380,18 +463,21 @@ task([
 	echo $res;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Приоритет математических операций в PHP');
 // https://code.mu/ru/php/book/prime/basis/math-operations-priority/
 // ⊗ppPmBsMOP
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 2 * 2 + 3;
 	echo $a; // выведет 7 (результат 4 + 3)
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -441,26 +527,32 @@ startLesson('Равный приоритет в PHP');
 // https://code.mu/ru/php/book/prime/basis/math-operations-equal/
 // ⊗ppPmBsMOE
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 8 / 2 * 4;
 	echo $a; // выведет 16 (результат 4 * 4)
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 8 * 2 / 4;
 	echo $a; // выведет 4 (результат 16 / 4)
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 16 / 2 / 2 / 2;
 	echo $a; // выведет 2
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -478,6 +570,7 @@ PHP,
 	echo ($res == $a) ? 'Верно' : 'Неверно';
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -496,25 +589,30 @@ PHP,
 	echo ($res == $a) ? 'Верно' : 'Неверно';
 	?>
 PHP
+	,
 ]);
 
 startLesson('Группирующие скобки в PHP');
 // https://code.mu/ru/php/book/prime/basis/math-operations-parentheses/
 // ⊗ppPmBsMOPa
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 2 * (2 + 3);
 	echo $a; // выведет 10 (результат 2 * 5)
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 2 * (2 + 4 * (3 + 1));
 	echo $a;
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -550,6 +648,7 @@ $res = 13;
 echo ($res == $a) ? 'Верно' : 'Неверно';
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -568,6 +667,7 @@ PHP,
 	echo ($res == $a) ? 'Верно' : 'Неверно';
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -586,32 +686,39 @@ PHP,
 	echo ($res == $a) ? 'Верно' : 'Неверно';
 ?>
 PHP
+	,
 ]);
 
 startLesson('Нюансы группировки в PHP');
 // https://code.mu/ru/php/book/prime/basis/math-operations-nuances/
 // ⊗ppPmBsMONua
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = (2 * 2) + 3;
 	echo $a; // выведет 7 (результат 4 + 3)
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 8 / 2 * 4;
 	echo $a;
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = (8 / 2) * 4;
 	echo $a;
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -629,6 +736,7 @@ PHP,
 	echo ($res == $a) ? 'Верно' : 'Неверно';
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -647,25 +755,30 @@ PHP,
 	echo ($res == $a) ? 'Верно' : 'Неверно';
 ?>
 PHP
+	,
 ]);
 
 startLesson('Дроби в PHP');
 // https://code.mu/ru/php/book/prime/basis/fractions/
 // ⊗ppPmBsFr
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 0.5;
 	echo $a; // выведет 0.5
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 0.5 + 0.5;
 	echo $a; // выведет 1
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -677,33 +790,40 @@ task([
 	echo $a + $b;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Отрицательные числа в PHP');
 // https://code.mu/ru/php/book/prime/basis/negative-numbers/
 // ⊗ppPmBsNN
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = -1;
 	echo $a; // выведет -1
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 1;
 	$b = -$a; // записали в $b содержимое $a с обратным знаком
 	echo $b;  // выведет -1
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 1;
 	echo -$a; // выведет -1
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -714,6 +834,7 @@ task([
 	echo $a;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -725,31 +846,38 @@ task([
 	echo -$a;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Остаток от деления в PHP');
 // https://code.mu/ru/php/book/prime/basis/division-remainder/
 // ⊗ppPmBsDR
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo 10 % 3; // выведет 1
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo 10 % 2; // выведет 0
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 10;
 	$b = 3;
 	echo $a % $b; // выведет 1
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -761,32 +889,39 @@ task([
 	echo $a % $b;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Возведение в степень в PHP');
 // https://code.mu/ru/php/book/prime/basis/numbers-powering/
 // ⊗ppPmBsNP
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo 10 ** 3; // выведет 1000
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 10;
 	echo $a ** 3; // выведет 1000
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 10;
 	$b = 3;
 	echo $a ** $b; // выведет 1000
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -796,17 +931,20 @@ task([
 	echo 2 ** 10;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Приоритет возведения в степень в PHP');
 // https://code.mu/ru/php/book/prime/basis/numbers-powering-priority/
 // ⊗ppPmBsNPP
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo 2 * 2 ** 3;
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -824,6 +962,7 @@ PHP,
 	echo ($res == $a) ? 'Верно' : 'Неверно';
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -842,6 +981,7 @@ $res = 216;
 echo ($res == $a) ? 'Верно' : 'Неверно';
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -860,6 +1000,7 @@ PHP,
 	echo ($res == $a) ? 'Верно' : 'Неверно';
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -878,6 +1019,7 @@ PHP,
 	echo ($res == $a) ? 'Верно' : 'Неверно';
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -896,52 +1038,63 @@ PHP,
 	echo ($res == $a) ? 'Верно' : 'Неверно';
 ?>
 PHP
+	,
 ]);
 
 startLesson('Строки в PHP');
 // https://code.mu/ru/php/book/prime/basis/strings/
 // ⊗ppPmBsSt
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str = 'abc';
 	echo $str; // выведет 'abc'
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str = "abc";
 	echo $str; // выведет 'abc'
 ?>
-PHP);
+PHP
+);
 
 startLesson('Сложение строк в PHP');
 // https://code.mu/ru/php/book/prime/basis/strings-concatenation/
 // ⊗ppPmBsSC
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str = 'abc' . 'def'; // складываем две строки
 	echo $str;            // выведет 'abcdef'
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str1 = 'abc';
 	$str2 = 'def';
 	echo $str1 . $str2; // выведет 'abcdef'
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str1 = 'abc';
 	$str2 = 'def';
 	echo $str1 . '!!!' . $str2; // выведет 'abc!!!def'
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -952,6 +1105,7 @@ task([
 	echo $str;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -964,33 +1118,40 @@ task([
 	echo $str1 . $str2;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Пробелы при сложении строк в PHP');
 // https://code.mu/ru/php/book/prime/basis/strings-concatenation-spaces/
 // ⊗ppPmBsSCS
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str1 = 'abc';
 	$str2 = 'def';
 	echo $str1 . ' ' . $str2; // выведет 'abc def'
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str = 'abc';
 	echo $str . ' ' . 'def'; // выведет 'abc def'
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str = 'abc';
 	echo $str . ' def'; // выведет 'abc def'
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1002,30 +1163,37 @@ task([
 	echo $str1 . ' ' . $str2;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Длина строки в PHP');
 // https://code.mu/ru/php/book/prime/basis/strings-length/
 // ⊗ppPmBsSL
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo strlen('abcde'); // выведет 5
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str = 'abcde';
 	echo strlen($str); // выведет 5
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo strlen('ab de'); // выведет 5
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1036,23 +1204,28 @@ task([
 	echo strlen($str);
 ?>
 PHP
+	,
 ]);
 
 startLesson('Проблема с кириллицей в PHP');
 // https://code.mu/ru/php/book/prime/basis/cyrillic-problem/
 // ⊗ppPmBsCyP
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo strlen('абвгд'); // выведет 10, а не 5
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo mb_strlen('абвгд'); // выведет 5
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1063,34 +1236,42 @@ task([
 	echo mb_strlen($str);
 ?>
 PHP
+	,
 ]);
 
 startLesson('Работа с HTML тегами в PHP');
 // https://code.mu/ru/php/book/prime/basis/tags/
 // ⊗ppPmBsTg
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo '<b>bold</b>';
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo '<b>';
 	echo 'bold';
 	echo '</b>';
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str = 'bold';
 	echo '<b>' . $str . '</b>';
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str   = 'bold';
 	$open  = '<b>';
@@ -1098,7 +1279,8 @@ codeBlock(<<<'PHP'
 	
 	echo $open . $str . $close;
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1110,6 +1292,7 @@ task([
 	echo $open . 'курсивный текст' . $close;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -1117,32 +1300,37 @@ task([
 	'text' => 'С помощью тега <a><code>br</code></a> выведите на экран столбец чисел от <code>1</code> до <code>9</code>.',
 	'solution' => <<<'PHP'
 <?
-	$br = '<br>';
+	$br = '<br />';
 	for ($i = 1; $i <= 9; $i++) {
 		echo $i . $br;
 	}
 ?>
 PHP
+	,
 ]);
 
 startLesson('Атрибуты тегов в PHP');
 // https://code.mu/ru/php/book/prime/basis/tags-attributes/
 // ⊗ppPmBsTgA
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo '<a href="index.php">ссылка</a>';
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$href = 'index.php';
 	$text = 'ссылка';
 	
 	echo '<a href="' . $href . '">' . $text . '</a>';
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1153,6 +1341,7 @@ task([
 	echo '<img src="' . $src . '" alt="Картинка">';
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -1164,6 +1353,7 @@ task([
 	echo '<input type="text" value="' . $value . '">';
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -1175,37 +1365,46 @@ task([
 	echo '<textarea>' . $value . '</textarea>';
 ?>
 PHP
+	,
 ]);
 
 startLesson('Логические значения в PHP');
 // https://code.mu/ru/php/book/prime/basis/boolean-values/
 // ⊗ppPmBsBV
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$isAdult = true;  // уже взрослый
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$isAdult = false; // еще не взрослый
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$isAdult = true;
 	var_dump($isAdult); // выведет true
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo true;  // выведет 1
 	echo false; // выведет пустоту
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1216,6 +1415,7 @@ task([
 	echo $test;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -1227,37 +1427,46 @@ task([
 	echo $test;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Значение null в PHP');
 // https://code.mu/ru/php/book/prime/basis/null/
 // ⊗ppPmBsNl
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$test = null;
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$test = null;
 	var_dump($test); // выведет null
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$test = null;
 	echo $test;      // выведет пустоту
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	var_dump($test); // выведет null
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1268,6 +1477,7 @@ task([
 	echo $test;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -1278,38 +1488,47 @@ task([
 	echo $testing;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Автоматическое преобразование типов в PHP');
 // https://code.mu/ru/php/book/prime/basis/automatic-types-conversion/
 // ⊗ppPmBsATC
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo '1' + '2'; // выведет 3
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo '1' + 2;   // выведет 3
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo 1 + '2';   // выведет 3
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = '1';
 	$b = '2';
 	
 	echo $a + $b;   // выведет 3
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1331,20 +1550,23 @@ PHP,
 	echo ($res == $c) ? 'Верно' : 'Неверно';
 ?>
 PHP
+	,
 ]);
 
 startLesson('Автоматическое преобразование к строке в PHP');
 // https://code.mu/ru/php/book/prime/basis/conversion-to-string/
 // ⊗ppPmBsCTS
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 1;
 	$b = 2;
 	
 	echo $a . $b; // выведет '12'
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1364,38 +1586,47 @@ PHP,
 	echo $a . $b . $c;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Нюансы преобразования к строке в PHP');
 // https://code.mu/ru/php/book/prime/basis/nuances-to-string/
 // ⊗ppPmBsNTS
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo 1 . 2; // выведет '12'
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo 1.2; // выведет 1.2
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo 1. 2; // выдаст ошибку
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$a = 1;
 	$b = 2;
 	
 	echo $a.$b; // выведет '12', а не ошибку
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1410,38 +1641,47 @@ PHP,
 echo 3 . 4;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Принудительное преобразование в целые числа на PHP');
 // https://code.mu/ru/php/book/prime/basis/conversion-to-number/
 // ⊗ppPmBsCTN
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$test = '1';
 	var_dump($test);
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$test = (int) '1';
 	var_dump($test); // выведет 1 - число
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	var_dump((int) '1');
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$test = '1';
 	var_dump((int) $test);
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1458,25 +1698,30 @@ PHP,
 	var_dump($testInt);
 ?>
 PHP
+	,
 ]);
 
 startLesson('Принудительное преобразование в дробные числа в PHP');
 // https://code.mu/ru/php/book/prime/basis/conversion-to-fraction/
 // ⊗ppPmBsCTF
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$test = '1.2';
 	var_dump($test);
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$test = (float) '1.2';
 	var_dump($test); // выведет 1.2
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1493,25 +1738,30 @@ PHP,
 	var_dump($testFloat);
 ?>
 PHP
+	,
 ]);
 
 startLesson('Преобразование дроби к целому числу в PHP');
 // https://code.mu/ru/php/book/prime/basis/fraction-to-integer/
 // ⊗ppPmBsFTI
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$test = (int) '1.2';
 	var_dump($test); // выведет 1
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$test = (int) 1.2;
 	var_dump($test); // выведет 1
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1528,25 +1778,30 @@ PHP,
 	var_dump($testInt);
 ?>
 PHP
+	,
 ]);
 
 startLesson('Преобразование числа к строке в PHP');
 // https://code.mu/ru/php/book/prime/basis/number-to-string/
 // ⊗ppPmBsNTS
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$test = (string) 123;
 	var_dump($test); // выведет '123'
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$test = (string) 1.2;
 	var_dump($test); // выведет '1.2'
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1563,6 +1818,7 @@ PHP,
 	var_dump($testString);
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -1580,19 +1836,23 @@ PHP,
 	var_dump($testString);
 ?>
 PHP
+	,
 ]);
 
 startLesson('Получение символов строки на PHP');
 // https://code.mu/ru/php/book/prime/basis/string-characters/
 // ⊗ppPmBsSCh
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str = 'abcde';
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str = 'abcde';
 	
@@ -1600,9 +1860,11 @@ codeBlock(<<<'PHP'
 	echo $str[1]; // выведет 'b'
 	echo $str[2]; // выведет 'c'
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str = 'abcde';
 	
@@ -1610,25 +1872,30 @@ codeBlock(<<<'PHP'
 	echo $str[-2]; // выведет 'd'
 	echo $str[-5]; // выведет 'a'
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str = 'abcde';
 	$str[0] = '+';
 	
 	echo $str; // выведет '+bcde'
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str = 'abcde';
 	$num = 3; // номер символа в переменной
 	
 	echo $str[$num]; // выведет 'd'
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1646,6 +1913,7 @@ echo $str[2]; // выведет 'c'
 echo $str[4]; // выведет 'e'
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -1662,6 +1930,7 @@ $str = 'abcde';
 echo $str[-1]; // выведет 'e'
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -1679,6 +1948,7 @@ $strReversed = $str[4] . $str[3] . $str[2] . $str[1] . $str[0];
 echo $strReversed; 
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -1697,13 +1967,15 @@ $num = 3;
 echo $str[$num]; // выведет 'd'
 ?>
 PHP
+	,
 ]);
 
 startLesson('Цифры в строке на PHP');
 // https://code.mu/ru/php/book/prime/basis/digits-strings/
 // ⊗ppPmBsDS
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str = '12345';
 	
@@ -1711,14 +1983,17 @@ codeBlock(<<<'PHP'
 	echo $str[1]; // выведет '2'
 	echo $str[2]; // выведет '3'
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str = '12345';
 	echo $str[0] + $str[1]; // выведет 3
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1730,27 +2005,32 @@ task([
 	echo $sum; // выведет 15
 ?>
 PHP
+	,
 ]);
 
 startLesson('Обращение к цифрам числа на PHP');
 // https://code.mu/ru/php/book/prime/basis/number-digits/
 // ⊗ppPmBsND
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num = 12345;
 	echo $num[0]; // выдаст ошибку
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num = 12345;
 	$str = (string) $num;
 	
 	echo $str[0]; // выведет '1'
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1763,6 +2043,7 @@ task([
 	echo $sum; // выведет 15
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -1776,6 +2057,7 @@ task([
 	echo $product; // выведет 120
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -1789,19 +2071,22 @@ $reversed = $str[4] . $str[3] . $str[2] . $str[1] . $str[0];
 echo $reversed; // выведет '54321'
 ?>
 PHP
+	,
 ]);
 
 startLesson('Нюансы работы с операцией присваивания в PHP');
 // https://code.mu/ru/php/book/prime/basis/assignment-operations-nuances/
 // ⊗ppPmBsAON
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num = 1; // объявляем переменную $num и записываем в нее значение 1
 	$num = $num + 2; // записываем в $num ее саму плюс 2
 	echo $num; // выведет 3
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1824,6 +2109,7 @@ $res = 3;
 echo ($res == $num) ? 'Верно' : 'Неверно';
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -1847,53 +2133,66 @@ $res = 6;
 echo ($res == $num) ? 'Верно' : 'Неверно';
 ?>
 PHP
+	,
 ]);
 
 startLesson('Сокращенные операции в PHP');
 // https://code.mu/ru/php/book/prime/basis/short-operations/
 // ⊗ppPmBsShO
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num = 1;
 	$num = $num + 2;
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num  = 1;
 	$num += 3; // эквивалентно $num = $num + 3;
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num  = 2;
 	$num -= 3; // эквивалентно $num = $num - 3;
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num  = 2;
 	$num *= 3; // эквивалентно $num = $num * 3;
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num  = 2;
 	$num /= 3; // эквивалентно $num = $num / 3;
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$str  = 'a';
 	$str .= 'b'; // эквивалентно $str = $str . 'b';
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1939,43 +2238,52 @@ $str .= 'c';
 echo $str;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Операции инкремента и декремента в PHP');
 // https://code.mu/ru/php/book/prime/basis/incrementation/
 // ⊗ppPmBsIc
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num = 0;
 	$num = $num + 1; // прибавляем к переменной $num число 1
 	echo $num;       // выведет 1
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num = 0;
 	$num += 1; // прибавляем к переменной $num число 1
 	echo $num; // выведет 1
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num = 0;
 	$num++;    // прибавляем к переменной a число 1
 	echo $num; // выведет 1
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num = 0;
 	$num--;    // отнимаем от переменной $num число 1
 	echo $num; // выведет -1
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -1998,52 +2306,63 @@ PHP,
 	echo $num;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Префиксный и постфиксный тип в PHP');
 // https://code.mu/ru/php/book/prime/basis/prefix-postfix-type/
 // ⊗ppPmBsPPT
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num = 0;
 	echo $num++; // выведет 0, тк переменная увеличится только после echo
 	echo $num;   // выведет 1 - переменная поменялась
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num = 0;
 	echo ++$num; // выведет 1 - переменная увеличилась сразу
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num1 = 0;
 	$num2 = $num1++; // в переменную $num2 запишется 0
 	echo $num2;      // выведет 0
 	echo $num1;      // выведет 1 - переменная $num1 поменялась после записи в $num2
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num1 = 0;
 	$num2 = ++$num1; // в переменную $num2 запишется 1
 	echo $num2;      // выведет 1
 ?>
-PHP);
+PHP
+);
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	$num = 0;
 	++$num;
 	$num++;
 	echo $num; // выведет 2
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -2061,6 +2380,7 @@ echo ++$num; // увеличиваем переменную на 1
 echo $num; // выведет 4
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2078,6 +2398,7 @@ $num = 3;
 echo $num++;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2096,6 +2417,7 @@ echo --$num; // уменьшаем переменную на 1
 echo $num; // выведет 2
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2114,6 +2436,7 @@ echo $num--; // выведет 3, тк переменная уменьшится
 echo $num; // выведет 2 - переменная поменялась
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2135,6 +2458,7 @@ echo $num1; // выведет 4
 echo $num2; // выведет 4
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2156,6 +2480,7 @@ echo $num1; // выведет 4
 echo $num2; // выведет 3
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2177,6 +2502,7 @@ echo $num1; // выведет 2
 echo $num2; // выведет 2
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2198,6 +2524,7 @@ echo $num1; // выведет 2
 echo $num2; // выведет 3
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2221,6 +2548,7 @@ echo $num1++; // выведет 3, $num1 = 4
 echo --$num2; // уменьшаем $num2 на 1 и выводим, выведет 3
 ?>
 PHP
+	,
 ]);
 
 startLesson('Поиск ошибок в коде');
@@ -2242,6 +2570,7 @@ PHP,
 	echo $str[-1]; // получаем последний символ строки
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2261,6 +2590,7 @@ PHP,
 	echo 'result: ' . ($num1 + $num2); // используем конкатенацию и скобки для правильного сложения
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2279,6 +2609,7 @@ PHP,
 	echo $str[0]; // выводим первый символ строки
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2296,6 +2627,7 @@ PHP,
 	echo $str[-1]; // получаем последний символ строки
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2319,6 +2651,7 @@ PHP,
 	echo $num1 + $num2 + $num3; // должно вывести 6
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2334,6 +2667,7 @@ PHP,
 	echo 1 . 2; // должно быть '12'
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2351,6 +2685,7 @@ PHP,
 	echo strlen($str) - 1; // выводит 6
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2368,6 +2703,7 @@ PHP,
 	echo ++$a; // выводит 1
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2386,6 +2722,7 @@ PHP,
 	echo $str[0] + $str[1]; // находим сумму первой и второй цифры числа
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2403,6 +2740,7 @@ PHP,
 	echo strlen($str); // используем правильную функцию strlen
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2420,6 +2758,7 @@ PHP,
 	echo $a;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2435,6 +2774,7 @@ PHP,
 	echo 1.2 + 1.3; // должно быть 2.5
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2452,6 +2792,7 @@ PHP,
 	echo $str[-1]; // получаем последний символ строки
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2470,6 +2811,7 @@ PHP,
 	echo $str[0] + $str[1] + $str[2]; // находим сумму всех цифр числа
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2493,6 +2835,7 @@ PHP,
 	echo $s; // выведет 579
 	?>
 PHP
+	,
 ]);
 
 task([
@@ -2512,17 +2855,20 @@ PHP,
 	echo $num1 + $num2; // выведет 6
 ?>
 PHP
+	,
 ]);
 
 startLesson('Практика на операции в PHP');
 // https://code.mu/ru/php/book/prime/basis/practicum/operations/
 // ⊗ppPmBsPrmO
 
-codeBlock(<<<'PHP'
+codeBlock(
+	<<<'PHP'
 <?
 	echo 60 * 60; // количество секунд в часе
 ?>
-PHP);
+PHP
+);
 
 task([
 	'num' => 1,
@@ -2532,6 +2878,7 @@ task([
 	echo 24 * 60 * 60;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2542,6 +2889,7 @@ task([
 	echo 30 * 24 * 60 * 60;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2552,6 +2900,7 @@ task([
 	echo 365 * 24 * 60 * 60;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2562,6 +2911,7 @@ task([
 	echo 24 * 60;
 	?>
 PHP
+	,
 ]);
 
 task([
@@ -2572,6 +2922,7 @@ task([
 	echo 365 * 24 * 60;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2582,6 +2933,7 @@ task([
 	echo 1024 * 1024;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2592,6 +2944,7 @@ task([
 	echo 1024 * 1024 * 1024;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2602,6 +2955,7 @@ task([
 	echo 10 * 1024 * 1024 * 1024;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2612,6 +2966,7 @@ task([
 	echo 1024 * 1024 * 1024 * 1024;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2622,6 +2977,7 @@ task([
 	echo 1024 * 1024 * 1024;
 ?>
 PHP
+	,
 ]);
 
 startLesson('Практика на формулы в PHP');
@@ -2638,6 +2994,7 @@ task([
 	echo $s;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2650,6 +3007,7 @@ task([
 	echo $s;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2663,10 +3021,10 @@ task([
 	echo $s;
 ?>
 PHP
+	,
 ]);
 
 task([
-	'num' => 4,
 	'text' => 'Пусть даны переменные <code>a</code> и <code>b</code> со сторонами прямоугольника. Найдите периметр прямоугольника и запишите его в переменную <code>p</code>. Выведите содержимое этой переменной на экран.',
 	'solution' => <<<'PHP'
 <?
@@ -2676,6 +3034,7 @@ task([
 	echo $p;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2688,6 +3047,7 @@ task([
 	echo $tf;
 ?>
 PHP
+	,
 ]);
 
 task([
@@ -2700,4 +3060,5 @@ task([
 	echo $tc;
 ?>
 PHP
+	,
 ]);
