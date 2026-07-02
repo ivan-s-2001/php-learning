@@ -10,22 +10,18 @@
     <h1><?= $pageTitle ?></h1>
 </header>
 <nav class="theme-nav">
-    <?php
-    foreach ($blocks as $key => $content): ?>
+    <? foreach ($blocks as $key => $content): ?>
         <a href="?block=<?= $key ?>"<?= (($key === $block) ? ' class="active"' : '') ?>>
             <?= normalizeString($content['title']) ?>
         </a>
-    <?php
-    endforeach; ?>
+    <? endforeach; ?>
 </nav>
 <div class="page">
     <h2><?= normalizeString($blocks[$block]['title']); ?></h2>
-    <?php
-    include $blocks[$block]['file']; ?>
-    <?php
-    endLesson(); ?>
+    <? include $blocks[$block]['file']; ?>
+    <? endLesson(); ?>
 </div>
-<?php
+<?
 includeTemplate('templates/navigation.php'); ?>
 </body>
 </html>
