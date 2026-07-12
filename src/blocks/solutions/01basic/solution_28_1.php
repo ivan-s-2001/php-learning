@@ -1,1 +1,4 @@
 <?
+$str = 'hello';
+echo $str;
+?>

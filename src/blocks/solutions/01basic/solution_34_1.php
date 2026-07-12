@@ -1,1 +1,4 @@
 <?
+$bool = true;
+echo $bool;
+?>

@@ -15,6 +15,11 @@
       <phpcs_by_interpreter asDefaultInterpreter="true" interpreter_id="59d0cd30-5921-47b2-b4f7-165d7481a579" timeout="30000" />
     </phpcs_settings>
   </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+    </include_path>
+  </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
   <component name="PhpStan">
     <PhpStan_settings>

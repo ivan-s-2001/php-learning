@@ -11,9 +11,7 @@
 </header>
 <nav class="theme-nav">
     <? foreach ($blocks as $key => $content): ?>
-        <a href="?block=<?= $key ?>"<?= (($key === $block) ? ' class="active"' : '') ?>>
-            <?= normalizeString($content['title']) ?>
-        </a>
+        <a href="?block=<?= $key ?>"<?= (($key === $block) ? ' class="active"' : '') ?>><?= normalizeString($content['title']) ?></a>
     <? endforeach; ?>
 </nav>
 <div class="page">
