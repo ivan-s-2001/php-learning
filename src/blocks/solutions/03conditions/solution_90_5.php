@@ -1,1 +1,9 @@
 <?
+$test = '0';
+
+if (!empty($test)) {
+    echo '+++';
+} else {
+    echo '---'; // Это
+}
+?>
