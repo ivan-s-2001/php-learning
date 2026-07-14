@@ -736,6 +736,17 @@ task([
     'text' => 'С помощью одного цикла и функции <code>str_repeat</code>
 
 		выведите на экран следующую пирамидку:',
+    'code' => <<< 'PHP'
+x
+xx
+xxx
+xxxx
+xxxxx
+xxxxxx
+xxxxxxx
+xxxxxxxx
+xxxxxxxxx
+PHP,
     'solution' => $solutionDir . '/solution_158_1.php'
 ]);
 
@@ -743,6 +754,17 @@ task([
     'text' => 'С помощью одного цикла и функции <code>str_repeat</code>
 
 		выведите на экран следующую пирамидку:',
+    'code' => <<< 'PHP'
+1
+22
+333
+4444
+55555
+666666
+7777777
+88888888
+999999999
+PHP,
     'solution' => $solutionDir . '/solution_158_2.php'
 ]);
 

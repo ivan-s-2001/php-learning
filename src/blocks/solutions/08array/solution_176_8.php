@@ -1,1 +1,5 @@
 <?
+$arr = ['IMG12.png', 'img10.png', 'img2.png', 'IMG1.png'];
+natcasesort($arr);
+var_dump($arr);
+?>
